@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material.NoActionBar">
+    </style>
+
+    <style name="NumberText" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">.25</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/ripple_purple</item>
+        <item name="android:textSize">@dimen/number_font_size</item>
+    </style>
+
+</resources>
