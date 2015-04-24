@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/share_background"
+    android:elevation="@dimen/people_elevation">
+
+    <RelativeLayout
+        android:id="@+id/rl_share_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/share_text"
+        android:elevation="20dp"
+        android:padding="@dimen/normal_padding">
+        <TextView
+            android:id="@+id/tv_share_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ShareBtnTitle"
+            android:text="@string/share_title"/>
+
+        <TextView
+            android:id="@+id/tv_share_minus"
+            android:layout_below="@+id/tv_share_title"
+            style="@style/ShareBtnText"
+            android:text="@string/minus"/>
+
+        <TextView
+            android:id="@+id/tv_share_num"
+            android:layout_below="@+id/tv_share_title"
+            android:layout_toEndOf="@+id/tv_share_minus"
+            style="@style/ShareBtnText"
+            android:text="99"/>
+
+        <TextView
+            android:id="@+id/tv_share_plus"
+            android:layout_below="@+id/tv_share_title"
+            android:layout_toEndOf="@+id/tv_share_num"
+            style="@style/ShareBtnText"
+            android:text="@string/plus"/>
+        </RelativeLayout>
+
+
+
+    <include layout="@layout/share_number_pad"
+        android:layout_below="@+id/rl_share_title"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"></include>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true"
+    android:background="@color/white_smoke">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".15"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/LabelText"
+            android:text="@string/bill"/>
+
+        <TextView
+            style="@style/LabelText"
+            android:text="@string/tip"/>
+
+        <TextView
+            style="@style/LabelText"
+            android:text="@string/total"/>
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".25"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_bill_result"
+            style="@style/SmallResultText"/>
+
+        <TextView
+            android:id="@+id/tv_tip_result"
+            style="@style/SmallResultText"/>
+
+        <TextView
+            android:id="@+id/tv_total_result"
+            style="@style/SmallResultText"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".6"
+        android:gravity="center"/>
+
+
+
+</LinearLayout>

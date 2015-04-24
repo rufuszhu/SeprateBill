@@ -3,14 +3,82 @@
     <style name="AppTheme" parent="android:Theme.Material.NoActionBar">
     </style>
 
-    <style name="NumberText" parent="@android:style/TextAppearance">
+    <style name="NumberText" parent="@android:style/Widget.Material.Light.Button.Borderless">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">.25</item>
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/ripple_purple</item>
+        <item name="android:background">@drawable/ripple_bill</item>
         <item name="android:textSize">@dimen/number_font_size</item>
     </style>
+
+    <style name="TipText" parent="@android:style/Widget.Material.Light.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">.20</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/ripple_tip</item>
+        <item name="android:textSize">@dimen/tip_font_size</item>
+    </style>
+
+
+    <style name="LabelText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/result_label_font_size</item>
+        <item name="android:textColor">@color/result_label</item>
+    </style>
+
+    <style name="SmallResultText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/result_label_font_size</item>
+        <item name="android:textColor">@color/result_label</item>
+    </style>
+
+    <style name="ShareNumberText" parent="@android:style/Widget.Material.Light.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">.33</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/ripple_share</item>
+        <item name="android:textSize">@dimen/number_font_size</item>
+    </style>
+
+    <style name="ShareBtnText" parent="@android:style/Widget.Material.Light.Button.Borderless">
+        <item name="android:layout_width">@dimen/share_btn_size</item>
+        <item name="android:layout_height">@dimen/share_btn_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/ripple_share</item>
+        <item name="android:textSize">@dimen/share_btn_font_size</item>
+    </style>
+
+    <style name="ShareResultText" parent="@android:style/Widget.Material.Light.Button.Borderless">
+        <item name="android:layout_width">@dimen/share_btn_size</item>
+        <item name="android:layout_height">@dimen/share_btn_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/ripple_share</item>
+        <item name="android:textColor">@color/share_text</item>
+        <item name="android:textSize">@dimen/share_result_font_size</item>
+    </style>
+
+    <style name="ShareBtnTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+    </style>
+
 
 </resources>

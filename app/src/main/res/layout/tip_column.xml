@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tip"
+    android:elevation="@dimen/tip_elevation">
+
+    <TextView
+        android:id="@+id/tip_20"
+        style="@style/TipText"
+        android:text="20%" />
+    <TextView
+        android:id="@+id/tip_15"
+        style="@style/TipText"
+        android:text="15%" />
+    <TextView
+        android:id="@+id/tip_10"
+        style="@style/TipText"
+        android:text="10%" />
+    <TextView
+        android:id="@+id/tip_0"
+        style="@style/TipText"
+        android:text="no tip" />
+    <TextView
+        android:id="@+id/tip_btn"
+        style="@style/TipText"
+        android:text="@string/tip" />
+</LinearLayout>
