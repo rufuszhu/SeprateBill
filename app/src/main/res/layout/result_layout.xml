@@ -34,7 +34,7 @@
         android:layout_weight=".25"
         android:orientation="vertical">
 
-        <TextView
+        <com.example.rzhu.sepratebill.AtmTextView
             android:id="@+id/tv_bill_result"
             style="@style/SmallResultText"/>
 
