@@ -12,21 +12,21 @@
         android:layout_weight=".25">
 
         <TextView
-            android:id="@+id/ppl_7"
+            android:id="@+id/ppl_1"
             style="@style/ShareNumberText"
-            android:text="@string/num_seven"
+            android:text="1"
             android:layout_column="0" />
 
         <TextView
-            android:id="@+id/ppl_8"
+            android:id="@+id/ppl_2"
             style="@style/ShareNumberText"
-            android:text="@string/num_eight"
+            android:text="2"
             android:layout_column="1" />
 
         <TextView
-            android:id="@+id/ppl_9"
+            android:id="@+id/ppl_3"
             style="@style/ShareNumberText"
-            android:text="@string/num_nine"
+            android:text="3"
             android:layout_column="2" />
 
     </TableRow>
@@ -56,27 +56,29 @@
 
     </TableRow>
 
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".25">
 
         <TextView
-            android:id="@+id/ppl_1"
+            android:id="@+id/ppl_7"
             style="@style/ShareNumberText"
-            android:text="1"
+            android:text="@string/num_seven"
             android:layout_column="0" />
 
         <TextView
-            android:id="@+id/ppl_2"
+            android:id="@+id/ppl_8"
             style="@style/ShareNumberText"
-            android:text="2"
+            android:text="@string/num_eight"
             android:layout_column="1" />
 
         <TextView
-            android:id="@+id/ppl_3"
+            android:id="@+id/ppl_9"
             style="@style/ShareNumberText"
-            android:text="3"
+            android:text="@string/num_nine"
             android:layout_column="2" />
 
     </TableRow>

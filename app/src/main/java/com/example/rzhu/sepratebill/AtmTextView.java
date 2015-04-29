@@ -38,20 +38,20 @@ public class AtmTextView extends TextView {
     }
 
     public void enterText(String s){
-        text = text.replace(".","");
-        text += s;
-        try {
+        //disallow value bigger than 9999.99
+        if(text.length()<=6) {
+            text = text.replace(".", "");
+            text += s;
+            try {
+                double value = (double) Integer.parseInt(text);
 
-            double value = (double) Integer.parseInt(text);
-
-            value = value/100d;
-
-            text = precision.format(value);
-            setText(text);
-        }
-        catch (NumberFormatException e){
-            text = "00.0" + s;
-            setText(text);
+                value = value / 100d;
+                text = precision.format(value);
+                setText(text);
+            } catch (NumberFormatException e) {
+                text = "00.0" + s;
+                setText(text);
+            }
         }
     }
 

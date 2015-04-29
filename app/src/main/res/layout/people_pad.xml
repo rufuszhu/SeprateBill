@@ -32,7 +32,7 @@
             android:layout_below="@+id/tv_share_title"
             android:layout_toEndOf="@+id/tv_share_minus"
             style="@style/ShareBtnText"
-            android:text="@string/num_zero"/>
+            android:text="@string/num_one"/>
 
         <TextView
             android:id="@+id/tv_share_plus"

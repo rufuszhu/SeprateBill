@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
     private Button tip_20,tip_15,tip_10,tip_0,tip_btn;
     private TextView bill_clear, bill_del, bill_0, bill_1, bill_2, bill_3, bill_4, bill_5, bill_6, bill_7, bill_8, bill_9;
     private TextView ppl_clear, ppl_del, ppl_0, ppl_1, ppl_2, ppl_3, ppl_4, ppl_5, ppl_6, ppl_7, ppl_8, ppl_9;
-    private TextView tv_tip_result,tv_total_result,tv_share_num,tv_share_back, tv_share_minus, tv_share_plus;
+    private TextView tv_tip_result,tv_total_result,tv_share_num,tv_share_back, tv_share_minus, tv_share_plus, tv_split_amount;
     private AtmTextView tv_bill_result;
     private TableLayout number_pad, share_num_pad;
     private LinearLayout ll_tip_col;
@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
     private double totalAmount;
     private double tipPercent;
     private int numOfShare;
-
+    private double splitAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,6 @@ public class MainActivity extends Activity {
         bill_7 = (TextView) findViewById(R.id.bill_7);
         bill_8 = (TextView) findViewById(R.id.bill_8);
         bill_9 = (TextView) findViewById(R.id.bill_9);
-
 
         ppl_1 = (TextView) findViewById(R.id.ppl_1);
         ppl_2 = (TextView) findViewById(R.id.ppl_2);
@@ -75,6 +74,7 @@ public class MainActivity extends Activity {
         tv_share_back = (TextView) findViewById(R.id.tv_share_back);
         tv_share_minus = (TextView) findViewById(R.id.tv_share_minus);
         tv_share_plus = (TextView) findViewById(R.id.tv_share_plus);
+        tv_split_amount = (TextView) findViewById(R.id.tv_split_amount);
 
         ll_tip_col = (LinearLayout) findViewById(R.id.ll_tip_col);
 
@@ -85,7 +85,13 @@ public class MainActivity extends Activity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-
+                try {
+                    numOfShare = Integer.parseInt(tv_share_num.getText().toString());
+                }catch (Exception e){
+                    numOfShare = 1;
+                    tv_share_num.setText(numOfShare+"");
+                }
+                calculateSplitAmount();
             }
         });
 
@@ -97,6 +103,7 @@ public class MainActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 calculateTotal();
+                calculateSplitAmount();
             }
         });
 
@@ -108,10 +115,8 @@ public class MainActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 calculateTipAmount();
-
                 calculateTotal();
-
-
+                calculateSplitAmount();
             }
         });
 
@@ -133,6 +138,14 @@ public class MainActivity extends Activity {
             }
         };
 
+        bill_del.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                tv_bill_result.clearText();
+                return true;
+            }
+        });
+
         View.OnClickListener peoplePadListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,13 +155,13 @@ public class MainActivity extends Activity {
                     return;
                 }
                 else if(currentShare.length()>0){
-                    if(currentShare.equalsIgnoreCase(getString(R.string.num_zero)))
+                    if(currentShare.equalsIgnoreCase(getString(R.string.num_one)))
                         numOfShare = Integer.parseInt(clickedNumber);
                     else
                         numOfShare = Integer.parseInt(currentShare + clickedNumber);
                 }
                 else{
-                    numOfShare = 0;
+                    numOfShare = 1;
                 }
                 tv_share_num.setText(numOfShare+"");
 
@@ -217,8 +230,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 numOfShare--;
-                if(numOfShare<0)
-                    numOfShare=0;
+                if(numOfShare<1)
+                    numOfShare=1;
                 tv_share_num.setText(numOfShare+"");
             }
         });
@@ -266,13 +279,21 @@ public class MainActivity extends Activity {
 
 
     private void calculateTipAmount(){
-
         String currentBillAmount = tv_bill_result.getText().toString();
         if(currentBillAmount.length()>0){
             double billAmount = Double.parseDouble(currentBillAmount);
             tipAmount = billAmount * tipPercent;
             tv_tip_result.setText(precision.format(tipAmount));
         }
+    }
+
+    private void calculateSplitAmount(){
+
+        if(totalAmount!=0 && numOfShare!=0) {
+            splitAmount = totalAmount / (double) numOfShare;
+            tv_split_amount.setText(precision.format(splitAmount));
+        }
+
     }
 
 

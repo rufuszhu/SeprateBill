@@ -49,9 +49,11 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_split_amount"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight=".6"
+        android:textSize="@dimen/final_amount_font_size"
         android:gravity="center"/>
 
 
