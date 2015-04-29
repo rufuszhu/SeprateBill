@@ -41,11 +41,11 @@ public class AtmTextView extends TextView {
         text = text.replace(".","");
         text += s;
         try {
-            Log.e(TAG,"text: " + text);
+
             double value = (double) Integer.parseInt(text);
 
             value = value/100d;
-            Log.e(TAG,"value: " + value);
+
             text = precision.format(value);
             setText(text);
         }
@@ -59,8 +59,11 @@ public class AtmTextView extends TextView {
         text = text.replace(".","");
         text = chopLastChar(text);
         try {
+            Log.e(TAG,"text: " + text);
             double value = (double) Integer.parseInt(text);
             value = value/100d;
+            Log.e(TAG,"value: " + value);
+
             text = precision.format(value);
             setText(text);
         }
@@ -76,7 +79,7 @@ public class AtmTextView extends TextView {
     }
 
     private String chopLastChar(String str) {
-        if (str.length() > 0 && str.charAt(str.length()-1)=='x') {
+        if (str.length() > 0) {
             str = str.substring(0, str.length()-1);
         }
         return str;

@@ -22,4 +22,6 @@
     <string name="plus">+</string>
 
 
+    <string name="icon_back_space">\uf3bf</string>
+
 </resources>

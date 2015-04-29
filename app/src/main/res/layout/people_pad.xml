@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/share_background"
-    android:elevation="@dimen/people_elevation">
+    android:elevation="@dimen/people_elevation"
+    xmlns:geekui="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/rl_share_title"
@@ -31,7 +32,7 @@
             android:layout_below="@+id/tv_share_title"
             android:layout_toEndOf="@+id/tv_share_minus"
             style="@style/ShareBtnText"
-            android:text="99"/>
+            android:text="@string/num_zero"/>
 
         <TextView
             android:id="@+id/tv_share_plus"
@@ -39,6 +40,14 @@
             android:layout_toEndOf="@+id/tv_share_num"
             style="@style/ShareBtnText"
             android:text="@string/plus"/>
+
+        <com.example.rzhu.sepratebill.TypefaceTextView
+            android:id="@+id/tv_share_back"
+            android:layout_below="@+id/tv_share_title"
+            android:layout_toEndOf="@+id/tv_share_plus"
+            style="@style/ShareBtnText"
+            android:text="@string/icon_back_space"
+            geekui:customTypeface="fonts/ionicons.ttf"/>
         </RelativeLayout>
 
 

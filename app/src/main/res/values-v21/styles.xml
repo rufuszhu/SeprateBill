@@ -13,13 +13,13 @@
         <item name="android:textSize">@dimen/number_font_size</item>
     </style>
 
-    <style name="TipText" parent="@android:style/Widget.Material.Light.Button.Borderless">
+    <style name="TipText" parent="@android:style/Widget.Material.Light.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">.20</item>
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/ripple_tip</item>
+        <item name="android:background">@drawable/tip_selector</item>
         <item name="android:textSize">@dimen/tip_font_size</item>
     </style>
 

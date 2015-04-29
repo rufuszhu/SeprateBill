@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/share_num_pad"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:stretchColumns="0,1,2"
@@ -11,16 +12,19 @@
         android:layout_weight=".25">
 
         <TextView
+            android:id="@+id/ppl_7"
             style="@style/ShareNumberText"
             android:text="@string/num_seven"
             android:layout_column="0" />
 
         <TextView
+            android:id="@+id/ppl_8"
             style="@style/ShareNumberText"
             android:text="@string/num_eight"
             android:layout_column="1" />
 
         <TextView
+            android:id="@+id/ppl_9"
             style="@style/ShareNumberText"
             android:text="@string/num_nine"
             android:layout_column="2" />
@@ -33,16 +37,19 @@
         android:layout_weight=".25">
 
         <TextView
+            android:id="@+id/ppl_4"
             style="@style/ShareNumberText"
             android:text="4"
             android:layout_column="0" />
 
         <TextView
+            android:id="@+id/ppl_5"
             style="@style/ShareNumberText"
             android:text="5"
             android:layout_column="1" />
 
         <TextView
+            android:id="@+id/ppl_6"
             style="@style/ShareNumberText"
             android:text="6"
             android:layout_column="2" />
@@ -55,16 +62,19 @@
         android:layout_weight=".25">
 
         <TextView
+            android:id="@+id/ppl_1"
             style="@style/ShareNumberText"
             android:text="1"
             android:layout_column="0" />
 
         <TextView
+            android:id="@+id/ppl_2"
             style="@style/ShareNumberText"
             android:text="2"
             android:layout_column="1" />
 
         <TextView
+            android:id="@+id/ppl_3"
             style="@style/ShareNumberText"
             android:text="3"
             android:layout_column="2" />
