@@ -14,15 +14,15 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/LabelText"
+            style="@style/BillLabelText"
             android:text="@string/bill"/>
 
         <TextView
-            style="@style/LabelText"
+            style="@style/TipLabelText"
             android:text="@string/tip"/>
 
         <TextView
-            style="@style/LabelText"
+            style="@style/TotalLabelText"
             android:text="@string/total"/>
 
         </LinearLayout>
@@ -36,15 +36,15 @@
 
         <com.example.rzhu.sepratebill.AtmTextView
             android:id="@+id/tv_bill_result"
-            style="@style/SmallResultText"/>
+            style="@style/BillResultText"/>
 
-        <TextView
+        <com.example.rzhu.sepratebill.AtmTextView
             android:id="@+id/tv_tip_result"
-            style="@style/SmallResultText"/>
+            style="@style/TipResultText"/>
 
         <TextView
             android:id="@+id/tv_total_result"
-            style="@style/SmallResultText"/>
+            style="@style/TotalResultText"/>
 
     </LinearLayout>
 

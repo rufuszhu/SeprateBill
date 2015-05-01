@@ -20,11 +20,11 @@
         style="@style/TipText"
         android:text="10%" />
     <Button
-        android:id="@+id/tip_0"
+        android:id="@+id/tip_notip"
         style="@style/TipText"
         android:text="no tip" />
     <Button
         android:id="@+id/tip_btn"
-        style="@style/TipText"
+        style="@style/TipBillToggleBtn"
         android:text="@string/tip" />
 </LinearLayout>

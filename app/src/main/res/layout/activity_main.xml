@@ -5,14 +5,27 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <include
-        android:id="@+id/ll_result_layout"
-        layout="@layout/result_layout"
+    <FrameLayout
+        android:id="@+id/result_wrapper"
         android:layout_weight=".3"
         android:layout_height="0dp"
         android:layout_width="match_parent">
 
-    </include>
+        <include
+            android:id="@+id/ll_result_layout"
+            layout="@layout/result_layout" ></include>
+
+            <View
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:background="@color/bill_pad"/>
+        </FrameLayout>
+
+
+
+
 
     <com.example.rzhu.sepratebill.CalculatorPadViewPager
         android:overScrollMode="never"
@@ -25,10 +38,21 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <include layout="@layout/number_pad"
+            <FrameLayout
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
-                android:layout_weight=".8"></include>
+                android:layout_weight=".8"
+                android:background="@color/white_smoke">
+
+                <include layout="@layout/number_pad"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"></include>
+
+                <include layout="@layout/tip_number_pad"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"></include>
+
+                </FrameLayout>
 
             <include layout="@layout/tip_column"
                 android:layout_height="match_parent"
