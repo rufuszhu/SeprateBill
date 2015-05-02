@@ -14,5 +14,5 @@
     <dimen name="share_btn_font_size">26sp</dimen>
     <dimen name="normal_padding">10dp</dimen>
     <dimen name="share_result_font_size">30sp</dimen>
-    <dimen name="final_amount_font_size">40sp</dimen>
+    <dimen name="final_amount_font_size">46sp</dimen>
 </resources>

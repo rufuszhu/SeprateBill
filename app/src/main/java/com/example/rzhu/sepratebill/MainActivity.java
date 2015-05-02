@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
     private final static String TAG = MainActivity.class.getSimpleName();
     private static final DecimalFormat precision = new DecimalFormat("00.00");
     private final double CUSTOM_TIP = -1;
+    private final double NOT_CUSTOM_TIP = -2;
     private Button tip_20, tip_15, tip_10, tip_notip, toggleBtn;
     private TextView bill_clear, bill_del, bill_0, bill_1, bill_2, bill_3, bill_4, bill_5, bill_6, bill_7, bill_8, bill_9;
     private TextView tip_clear, tip_del, tip_0, tip_1, tip_2, tip_3, tip_4, tip_5, tip_6, tip_7, tip_8, tip_9;
@@ -45,6 +47,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        numOfShare = 1;
 
         bill_clear = (TextView) findViewById(R.id.tip_clear);
         bill_del = (TextView) findViewById(R.id.bill_del);
@@ -95,12 +99,10 @@ public class MainActivity extends Activity {
 
         tv_share_num.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -108,7 +110,6 @@ public class MainActivity extends Activity {
                     numOfShare = Integer.parseInt(tv_share_num.getText().toString());
                 } catch (Exception e) {
                     numOfShare = 1;
-                    tv_share_num.setText(numOfShare + "");
                 }
                 calculateSplitAmount();
             }
@@ -125,6 +126,12 @@ public class MainActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                try {
+                    tipAmount = Double.valueOf(tv_tip_result.getText().toString());
+                }catch (Exception e){
+                    tipAmount = 0;
+                }
+
                 calculateTotal();
                 calculateSplitAmount();
             }
@@ -197,16 +204,12 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String currentShare = tv_share_num.getText().toString();
                 String clickedNumber = ((TextView) v).getText().toString();
-                if (currentShare.length() > 1) {
+                if (currentShare.length() == 2) {
                     return;
-                } else if (currentShare.length() > 0) {
-                    if (currentShare.equalsIgnoreCase(getString(R.string.num_one)))
-                        numOfShare = Integer.parseInt(clickedNumber);
-                    else
-                        numOfShare = Integer.parseInt(currentShare + clickedNumber);
-                } else {
-                    numOfShare = 1;
+                } else{
+                    numOfShare = Integer.parseInt(currentShare + clickedNumber);
                 }
+
                 tv_share_num.setText(numOfShare + "");
 
             }
@@ -218,26 +221,21 @@ public class MainActivity extends Activity {
                 int id = v.getId();
                 String currentBillAmount = tv_bill_result.getText().toString();
                 switch (id) {
-                    case (R.id.tip_0):
+                    case (R.id.tip_notip):
                         if (tipPercent == CUSTOM_TIP) {
                             toggleBillTipBtn();
                         }
 
                         clearTipSelectState();
                         v.setSelected(true);
-
-                        if (currentBillAmount.length() > 0) {
-                            tipAmount = 0;
-                            tv_tip_result.setText(precision.format(tipAmount));
-                        }
+                        tipAmount = 0;
+                        tv_tip_result.clearText();
 
                         break;
                     case (R.id.tip_btn):
-
                         toggleBillTipBtn();
                         break;
                     default:
-
                         if (tipPercent == CUSTOM_TIP) {
                             toggleBillTipBtn();
                         }
@@ -259,12 +257,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String currentShare = tv_share_num.getText().toString();
-                if (currentShare.length() > 1) {
+                if (currentShare.length() == 2) {
                     numOfShare = Integer.parseInt(chopLastChar(currentShare));
+                    tv_share_num.setText(numOfShare + "");
                 } else {
                     numOfShare = 0;
+                    tv_share_num.setText("");
                 }
-                tv_share_num.setText(numOfShare + "");
             }
         });
 
@@ -339,7 +338,6 @@ public class MainActivity extends Activity {
         }
     }
 
-
     private void calculateTipAmount() {
         String currentBillAmount = tv_bill_result.getText().toString();
         if (currentBillAmount.length() > 0) {
@@ -358,7 +356,6 @@ public class MainActivity extends Activity {
 
     }
 
-
     private void clearTipSelectState() {
         tip_notip.setSelected(false);
         tip_10.setSelected(false);
@@ -372,7 +369,6 @@ public class MainActivity extends Activity {
         }
         return str;
     }
-
 
     private void flipNumberPad() {
         final View newView;
@@ -414,10 +410,11 @@ public class MainActivity extends Activity {
             toggleBtn.setBackground(getDrawable(R.drawable.bill_btn_selector));
             clearTipSelectState();
             tipPercent = CUSTOM_TIP;
-            
+
         } else {
             toggleBtn.setText(getString(R.string.tip));
             toggleBtn.setBackground(getDrawable(R.drawable.tip_btn_selector));
+            tipPercent = NOT_CUSTOM_TIP;
         }
 
     }
@@ -434,8 +431,12 @@ public class MainActivity extends Activity {
                 super.onAnimationEnd(animation);
                 cover.setVisibility(View.GONE);
                 tv_bill_result.clearText();
-                splitAmount = 0;
+                tv_tip_result.clearText();
+                tv_total_result.setText("");
                 tv_split_amount.setText("");
+                splitAmount = 0;
+                tipAmount = 0;
+
             }
         });
         // make the view visible and start the animation

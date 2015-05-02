@@ -51,30 +51,32 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/normal_padding</item>
+        <item name="android:gravity">left|center_vertical</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:textColor">@color/result_label</item>
-        <item name="android:fontFamily">"sans-serif"</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 
     <style name="BillLabelText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/normal_padding</item>
+        <item name="android:gravity">left|center_vertical</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
         <item name="android:textColor">@color/bill_pad</item>
-        <item name="android:fontFamily">"sans-serif"</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 
     <style name="TipLabelText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/normal_padding</item>
+        <item name="android:gravity">left|center_vertical</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
         <item name="android:textColor">@color/tip_pad</item>
-        <item name="android:fontFamily">"sans-serif"</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 
 
@@ -82,18 +84,19 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">center_vertical|right</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
         <item name="android:textColor">@color/bill_pad</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 
     <style name="TipResultText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_centerVertical">true</item>
         <item name="android:textColor">@color/tip_pad</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
@@ -102,9 +105,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">center_vertical|right</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:textColor">@color/result_label</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 

@@ -1,46 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true"
-    android:background="@color/white_smoke">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="70dp"
         android:layout_height="match_parent"
-        android:layout_weight=".15"
         android:orientation="vertical">
 
         <TextView
             style="@style/BillLabelText"
-            android:text="@string/bill"/>
+            android:text="@string/bill" />
 
         <TextView
             style="@style/TipLabelText"
-            android:text="@string/tip"/>
+            android:text="@string/tip" />
 
         <TextView
             style="@style/TotalLabelText"
-            android:text="@string/total"/>
+            android:text="@string/total" />
 
-        </LinearLayout>
+    </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="90dp"
         android:layout_height="match_parent"
-        android:layout_weight=".25"
         android:orientation="vertical">
 
         <com.example.rzhu.sepratebill.AtmTextView
             android:id="@+id/tv_bill_result"
             style="@style/BillResultText"/>
 
-        <com.example.rzhu.sepratebill.AtmTextView
-            android:id="@+id/tv_tip_result"
-            style="@style/TipResultText"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:textSize="24sp"
+                android:text="@string/plus"
+                android:fontFamily="sans-serif-light"/>
+
+            <com.example.rzhu.sepratebill.AtmTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/tip_pad"
+                android:id="@+id/tv_tip_result"
+                android:layout_alignBaseline="@id/plus"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/result_label_font_size"
+                android:fontFamily="sans-serif-light"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white_smoke"/>
+
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/tv_total_result"
@@ -50,12 +75,12 @@
 
     <TextView
         android:id="@+id/tv_split_amount"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".6"
+        android:gravity="center"
         android:textSize="@dimen/final_amount_font_size"
-        android:gravity="center"/>
-
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/split_amount_result"/>
 
 
 </LinearLayout>

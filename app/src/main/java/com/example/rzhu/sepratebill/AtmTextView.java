@@ -59,23 +59,25 @@ public class AtmTextView extends TextView {
         text = text.replace(".","");
         text = chopLastChar(text);
         try {
-            Log.e(TAG,"text: " + text);
             double value = (double) Integer.parseInt(text);
             value = value/100d;
-            Log.e(TAG,"value: " + value);
 
             text = precision.format(value);
             setText(text);
         }
         catch (NumberFormatException e){
-            text = "00.00";
-            setText(text);
+            clearText();
         }
     }
 
     public void clearText(){
-        text = "00.00";
+        text = "";
         setText(text);
+    }
+
+    public void setText(String newText){
+        text = newText;
+        super.setText(newText);
     }
 
     private String chopLastChar(String str) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="bill_pad">#9C27B0</color>
-    <color name="bill_pad_clicked">#7B1FA2</color>
+    <color name="bill_pad">#673AB7</color>
+    <color name="bill_pad_clicked">#512DA8</color>
 
     <color name="white_smoke">#e1dfdf</color>
 
@@ -15,7 +15,29 @@
 
     <color name="result_label">#434343</color>
 
-    <color name="tip_pad">#1de9b6</color>
-    <color name="tip_pad_clicked">#1bd2a4</color>
+    <color name="tip_pad">#009688</color>
+    <color name="tip_pad_clicked">#00796B</color>
+
+    <color name="split_amount_result">#E53935</color>
+
+
+    <!--<color name="bill_pad">#9C27B0</color>-->
+    <!--<color name="bill_pad_clicked">#7B1FA2</color>-->
+
+    <!--<color name="white_smoke">#e1dfdf</color>-->
+
+    <!--<color name="tip_clicked">#808080</color>-->
+    <!--<color name="tip">#636363</color>-->
+
+    <!--<color name="share_clicked">#666666</color>-->
+    <!--<color name="share_background">#434343</color>-->
+    <!--<color name="share_text">#FFC107</color>-->
+
+    <!--<color name="result_label">#434343</color>-->
+
+    <!--<color name="tip_pad">#1de9b6</color>-->
+    <!--<color name="tip_pad_clicked">#1bd2a4</color>-->
+
+    <!--<color name="split_amount_result">#E53935</color>-->
 
 </resources>
