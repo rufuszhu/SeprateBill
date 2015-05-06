@@ -150,16 +150,16 @@ public class MainActivity extends Activity {
                 tv_share_holder.setX(x1);
                 tv_share_holder.setY(y1);
 
-//                final Path path = new Path();
-//                path.moveTo(x1, y1);
-//
-//                final float x2 = (x1 + x3) / 2;
-//                final float y2 = y1;
-//
-//                path.quadTo(x2, y2, x3, y3);
-//
-//                ObjectAnimator anim = ObjectAnimator.ofFloat(tv_share_holder, View.X, View.Y, path);
-//                anim.start();
+                final Path path = new Path();
+                path.moveTo(x1, y1);
+
+                final float x2 = (x1 + x3) / 2;
+                final float y2 = y1;
+
+                path.quadTo(x2, y2, x3, y3);
+
+                ObjectAnimator anim = ObjectAnimator.ofFloat(tv_share_holder, View.X, View.Y, path);
+                anim.start();
 
                 calculateSplitAmount();
             }
