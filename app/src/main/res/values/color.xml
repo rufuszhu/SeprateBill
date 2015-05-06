@@ -5,13 +5,14 @@
     <color name="bill_pad_clicked">#512DA8</color>
 
     <color name="white_smoke">#e1dfdf</color>
+    <color name="dark">#212121</color>
 
     <color name="tip_clicked">#808080</color>
     <color name="tip">#636363</color>
 
     <color name="share_clicked">#666666</color>
     <color name="share_background">#434343</color>
-    <color name="share_text">#FFC107</color>
+    <color name="share_title">#FFC107</color>
 
     <color name="result_label">#434343</color>
 

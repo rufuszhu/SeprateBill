@@ -11,8 +11,8 @@
         android:id="@+id/rl_share_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/share_text"
-        android:elevation="20dp"
+        android:background="@color/share_title"
+        android:elevation="@dimen/people_title_elevation"
         android:padding="@dimen/normal_padding">
         <TextView
             android:id="@+id/tv_share_title"

@@ -18,9 +18,10 @@
     <string name="tip">Tip</string>
     <string name="bill">Bill</string>
     <string name="share_title">Share by how many people</string>
+    <string name="split">Split</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
-
+    <string name="division">\u00F7</string>
 
     <string name="icon_back_space">\uf3bf</string>
 

@@ -54,6 +54,18 @@
         <item name="android:paddingLeft">@dimen/normal_padding</item>
         <item name="android:gravity">left|center_vertical</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
+        <item name="android:textColor">@color/tip</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
+    </style>
+
+    <style name="SplitLabelText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingLeft">@dimen/normal_padding</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textSize">@dimen/result_label_font_size</item>
+        <item name="android:textColor">@color/share_title</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 
@@ -107,6 +119,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center_vertical|right</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
+        <item name="android:textColor">@color/tip</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 
@@ -140,7 +153,7 @@
         <item name="android:clickable">true</item>
         <item name="android:padding">10dp</item>
         <item name="android:background">@drawable/ripple_share</item>
-        <item name="android:textColor">@color/share_text</item>
+        <item name="android:textColor">@color/share_title</item>
         <item name="android:textSize">@dimen/share_result_font_size</item>
     </style>
 
@@ -148,7 +161,10 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/activity_horizontal_margin</item>
+        <item name="android:textSize">@dimen/share_title_font_size</item>
+        <item name="android:fontFamily">"sans-serif"</item>
     </style>
+
 
 
 </resources>
