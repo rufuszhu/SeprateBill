@@ -2,9 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +79,8 @@
         android:id="@+id/tv_share_holder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textColor="@color/share_title"
+        android:textSize="@dimen/share_btn_font_size"
+        android:fontFamily="sans-serif-light"
         android:visibility="gone"/>
 </RelativeLayout>

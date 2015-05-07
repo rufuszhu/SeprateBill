@@ -6,6 +6,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Path;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.Button;
@@ -42,6 +44,8 @@ public class MainActivity extends Activity {
     private FrameLayout result_wrapper;
     private View cover;
     private SharedPreferences prefs;
+
+    private int statusBarHeight;
 
     private double tipAmount;
     private double totalAmount;
@@ -132,34 +136,43 @@ public class MainActivity extends Activity {
                 tv_share_num.getLocationOnScreen(loc1);
                 tv_share_result.getLocationOnScreen(loc2);
 
-                Log.e(TAG, "loc1[0]: " + loc1[0]);
-                Log.e(TAG, "loc1[1]: " + loc1[1]);
-                Log.e(TAG, "loc2[0]: " + loc2[0]);
-                Log.e(TAG, "loc2[1]: " + loc2[1]);
+//                Log.e(TAG, "loc1[0]: " + loc1[0]);
+//                Log.e(TAG, "loc1[1]: " + loc1[1]);
+//                Log.e(TAG, "loc2[0]: " + loc2[0]);
+//                Log.e(TAG, "loc2[1]: " + loc2[1]);
 
 
                 float x1 = loc1[0];
-                float y1 = loc1[1];
-
+                float y1 = loc1[1] - statusBarHeight;
 
                 float x3 = loc2[0];
-                float y3 = loc2[1];
+                float y3 = loc2[1] - statusBarHeight;
 
                 tv_share_holder.setVisibility(View.VISIBLE);
-                tv_share_holder.setText(numOfShare+"");
-                tv_share_holder.setX(x1);
-                tv_share_holder.setY(y1);
+                tv_share_holder.setText(numOfShare + "");
+                //tv_share_holder.setTextSize(pixelsToSp(getResources().getDimension(R.dimen.share_btn_font_size)));
+                tv_share_holder.setTextSize(pixelsToSp(tv_share_result.getTextSize()));
 
-                final Path path = new Path();
-                path.moveTo(x1, y1);
+                tv_share_holder.setX(x3);
+                tv_share_holder.setY(y3);
 
-                final float x2 = (x1 + x3) / 2;
-                final float y2 = y1;
 
-                path.quadTo(x2, y2, x3, y3);
-
-                ObjectAnimator anim = ObjectAnimator.ofFloat(tv_share_holder, View.X, View.Y, path);
-                anim.start();
+//                final Path path = new Path();
+//                path.moveTo(x1, y1);
+//
+//                final float x2 = (x1 + x3) / 2;
+//                final float y2 = y1;
+//
+//                path.quadTo(x2, y2, x3, y3);
+//
+//                ObjectAnimator moveAnimation = ObjectAnimator.ofFloat(tv_share_holder, View.X, View.Y, path);
+//                final float resultScale = tv_share_result.getTextSize() / tv_share_num.getTextSize();
+//                Log.e(TAG, "resultScale: " + resultScale);
+//                final AnimatorSet animatorSet = new AnimatorSet();
+//                animatorSet.playTogether(moveAnimation,
+//                        ObjectAnimator.ofFloat(tv_share_holder, View.SCALE_X, resultScale),
+//                        ObjectAnimator.ofFloat(tv_share_holder, View.SCALE_Y, resultScale));
+//                animatorSet.start();
 
                 calculateSplitAmount();
             }
@@ -367,6 +380,7 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        statusBarHeight = getStatusBarHeight();
         if(currentState == STATE_BILL) {
             prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             int savedTip = prefs.getInt(DEFAULT_TIP, 15);
@@ -512,6 +526,20 @@ public class MainActivity extends Activity {
         // make the view visible and start the animation
         cover.setVisibility(View.VISIBLE);
         anim.start();
+    }
+
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    public float pixelsToSp(float px) {
+        float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
+        return px/scaledDensity;
     }
 
 }

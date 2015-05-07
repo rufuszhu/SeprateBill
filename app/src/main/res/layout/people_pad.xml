@@ -11,9 +11,9 @@
         android:id="@+id/rl_share_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/share_title"
-        android:elevation="@dimen/people_title_elevation"
+        android:background="@color/share_background"
         android:padding="@dimen/normal_padding">
+
         <TextView
             android:id="@+id/tv_share_title"
             android:layout_width="wrap_content"
@@ -29,9 +29,16 @@
 
         <TextView
             android:id="@+id/tv_share_num"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/share_btn_font_size"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignBaseline="@+id/tv_share_minus"
             android:layout_below="@+id/tv_share_title"
             android:layout_toEndOf="@+id/tv_share_minus"
-            style="@style/ShareBtnText"
+            android:textColor="@color/share_title"
+            android:fontFamily="sans-serif-light"
             android:text="@string/num_one"/>
 
         <TextView
