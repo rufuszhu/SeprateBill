@@ -71,7 +71,7 @@ public class AtmTextView extends TextView {
     }
 
     public void clearText(){
-        text = "";
+        text = "00.00";
         setText(text);
     }
 

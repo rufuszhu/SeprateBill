@@ -30,7 +30,7 @@
 
 
     <LinearLayout
-        android:layout_width="90dp"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -95,8 +95,9 @@
 
             <TextView
                 android:id="@+id/tv_share_result"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/share_number_textView_width"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:textColor="@color/share_title"
                 android:layout_alignBaseline="@id/division"
                 android:layout_alignParentEnd="true"
@@ -111,24 +112,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_you_pay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normal_padding"
-            android:layout_marginTop="@dimen/normal_padding"
-            android:text="You Pay:"
-            android:textSize="@dimen/result_label_font_size"
-            android:textColor="@color/split_amount_result"/>
+        <!--<TextView-->
+            <!--android:id="@+id/tv_you_pay"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="@dimen/normal_padding"-->
+            <!--android:layout_marginTop="@dimen/normal_padding"-->
+            <!--android:text="You Pay:"-->
+            <!--android:textSize="@dimen/result_label_font_size"-->
+            <!--android:textColor="@color/split_amount_result"/>-->
 
-        <TextView
-            android:id="@+id/tv_split_amount"
+        <RelativeLayout
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="@dimen/final_amount_font_size"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/split_amount_result"/>
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_split_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/final_amount_font_size"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/split_amount_result"/>
+
+        </RelativeLayout>
+
 
 
     </RelativeLayout>

@@ -30,10 +30,9 @@
         <TextView
             android:id="@+id/tv_share_num"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/share_number_textView_width"
+            android:gravity="center"
             android:textSize="@dimen/share_btn_font_size"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_alignBaseline="@+id/tv_share_minus"
             android:layout_below="@+id/tv_share_title"
             android:layout_toEndOf="@+id/tv_share_minus"

@@ -17,6 +17,8 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -25,6 +27,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import android.os.Handler;
+import java.util.logging.LogRecord;
 
 
 public class MainActivity extends Activity {
@@ -53,6 +57,9 @@ public class MainActivity extends Activity {
     private int numOfShare;
     private double splitAmount;
     private int currentState;
+
+    private Handler mHandler;
+    private Runnable mRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,57 +131,13 @@ public class MainActivity extends Activity {
             public void afterTextChanged(Editable s) {
                 try {
                     numOfShare = Integer.parseInt(tv_share_num.getText().toString());
+                    startFlyShareNumberAnimation();
+                    startSplitAmountAnimation();
                 } catch (Exception e) {
                     numOfShare = 1;
+                    tv_share_result.setText("1");
                 }
 
-                tv_share_result.setText(numOfShare+"");
-
-                int loc1[] = new int[2];
-                int loc2[] = new int[2];
-
-                tv_share_num.getLocationOnScreen(loc1);
-                tv_share_result.getLocationOnScreen(loc2);
-
-//                Log.e(TAG, "loc1[0]: " + loc1[0]);
-//                Log.e(TAG, "loc1[1]: " + loc1[1]);
-//                Log.e(TAG, "loc2[0]: " + loc2[0]);
-//                Log.e(TAG, "loc2[1]: " + loc2[1]);
-
-
-                float x1 = loc1[0];
-                float y1 = loc1[1] - statusBarHeight;
-
-                float x3 = loc2[0];
-                float y3 = loc2[1] - statusBarHeight;
-
-                tv_share_holder.setVisibility(View.VISIBLE);
-                tv_share_holder.setText(numOfShare + "");
-                //tv_share_holder.setTextSize(pixelsToSp(getResources().getDimension(R.dimen.share_btn_font_size)));
-                tv_share_holder.setTextSize(pixelsToSp(tv_share_result.getTextSize()));
-
-                tv_share_holder.setX(x3);
-                tv_share_holder.setY(y3);
-
-
-//                final Path path = new Path();
-//                path.moveTo(x1, y1);
-//
-//                final float x2 = (x1 + x3) / 2;
-//                final float y2 = y1;
-//
-//                path.quadTo(x2, y2, x3, y3);
-//
-//                ObjectAnimator moveAnimation = ObjectAnimator.ofFloat(tv_share_holder, View.X, View.Y, path);
-//                final float resultScale = tv_share_result.getTextSize() / tv_share_num.getTextSize();
-//                Log.e(TAG, "resultScale: " + resultScale);
-//                final AnimatorSet animatorSet = new AnimatorSet();
-//                animatorSet.playTogether(moveAnimation,
-//                        ObjectAnimator.ofFloat(tv_share_holder, View.SCALE_X, resultScale),
-//                        ObjectAnimator.ofFloat(tv_share_holder, View.SCALE_Y, resultScale));
-//                animatorSet.start();
-
-                calculateSplitAmount();
             }
         });
 
@@ -194,6 +157,8 @@ public class MainActivity extends Activity {
                 } catch (Exception e) {
                     tipAmount = 0;
                 }
+                if(currentState == STATE_TIP)
+                    startTipAnimation();
 
                 calculateTotal();
                 calculateSplitAmount();
@@ -213,8 +178,10 @@ public class MainActivity extends Activity {
             public void afterTextChanged(Editable s) {
                 if (currentState != STATE_TIP)
                     calculateTipAmount();
+
                 calculateTotal();
                 calculateSplitAmount();
+                startBillAnimation();
             }
         });
 
@@ -304,6 +271,7 @@ public class MainActivity extends Activity {
                             tipAmount = Double.parseDouble(currentBillAmount) * tipPercent;
                             tv_tip_result.setText(precision.format(tipAmount));
                         }
+                        startTipAnimation();
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putInt(DEFAULT_TIP, (int) (tipPercent * 100));
                         editor.commit();
@@ -402,8 +370,81 @@ public class MainActivity extends Activity {
                 }
             });
         }
-
     }
+
+    private void startFlyShareNumberAnimation(){
+        tv_share_result.setVisibility(View.INVISIBLE);
+        tv_share_result.setText(numOfShare+"");
+
+        int loc1[] = new int[2];
+        int loc2[] = new int[2];
+
+        tv_share_num.getLocationOnScreen(loc1);
+        tv_share_result.getLocationOnScreen(loc2);
+
+        float x1 = loc1[0];
+        float y1 = loc1[1] - statusBarHeight;
+
+        float x3 = loc2[0];
+        float y3 = loc2[1] - statusBarHeight;
+
+        tv_share_holder.setVisibility(View.VISIBLE);
+        tv_share_holder.setText(numOfShare + "");
+        tv_share_holder.setTextSize(TypedValue.COMPLEX_UNIT_SP, pixelsToSp(tv_share_num.getTextSize()));
+
+        tv_share_holder.setX(x3);
+        tv_share_holder.setY(y3);
+
+
+        final Path path = new Path();
+        path.moveTo(x1, y1);
+
+        final float x2 = (x1 + x3) / 2;
+        final float y2 = y1;
+
+        path.quadTo(x2, y2, x3, y3);
+
+        ObjectAnimator moveAnimation = ObjectAnimator.ofFloat(tv_share_holder, View.X, View.Y, path);
+        moveAnimation.setAutoCancel(true);
+//                moveAnimation.addListener(new AnimatorListenerAdapter() {
+//                    @Override
+//                    public void onAnimationEnd(Animator animation) {
+//                        super.onAnimationEnd(animation);
+//                        if(mHandler==null){
+//                            mHandler = new Handler();
+//                            mRunnable = new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    startSplitAmountAnimation();
+//                                }
+//                            };
+//                        }
+//                    }
+//                });
+        moveAnimation.start();
+    }
+
+    private void startSplitAmountAnimation(){
+        calculateSplitAmount();
+        tv_split_amount.setScaleX(0);
+        tv_split_amount.setScaleY(0);
+        tv_split_amount.setAlpha(0);
+        tv_split_amount.animate().scaleX(1).scaleY(1).setInterpolator(new BounceInterpolator()).alpha(1).setDuration(1000).start();
+    }
+
+    private void startBillAnimation(){
+        tv_bill_result.setScaleX(0.9f);
+        tv_bill_result.setScaleY(0.9f);
+        tv_bill_result.animate().scaleX(1).scaleY(1).setInterpolator(new OvershootInterpolator()).alpha(1).setDuration(500).start();
+    }
+
+    private void startTipAnimation(){
+        tv_tip_result.setScaleX(0.9f);
+        tv_tip_result.setScaleY(0.9f);
+        tv_tip_result.animate().scaleX(1).scaleY(1).setInterpolator(new OvershootInterpolator()).alpha(1).setDuration(500).start();
+    }
+
+
 
     private void calculateTotal() {
         //calculate total
