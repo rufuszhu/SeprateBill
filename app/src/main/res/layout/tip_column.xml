@@ -26,5 +26,6 @@
     <Button
         android:id="@+id/tip_btn"
         style="@style/TipBillToggleBtn"
-        android:text="@string/tip" />
+        android:text="@string/edit_tip"
+        />
 </LinearLayout>

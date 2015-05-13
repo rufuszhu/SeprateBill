@@ -15,6 +15,8 @@
     <string name="num_eight">8</string>
     <string name="num_nine">9</string>
     <string name="total">Total</string>
+    <string name="edit_tip">\uf2bf Tip</string>
+    <string name="edit_bill">\uf2bf Bill</string>
     <string name="tip">Tip</string>
     <string name="bill">Bill</string>
     <string name="share_title">Share by how many people</string>

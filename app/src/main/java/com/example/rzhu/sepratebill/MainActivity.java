@@ -6,10 +6,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Path;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,8 +28,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
-import android.os.Handler;
-import java.util.logging.LogRecord;
 
 
 public class MainActivity extends Activity {
@@ -44,7 +43,7 @@ public class MainActivity extends Activity {
     private TextView tv_total_result, tv_share_num, tv_share_back, tv_share_minus, tv_share_plus, tv_split_amount, tv_share_result, tv_share_holder;
     private AtmTextView tv_bill_result, tv_tip_result;
     private TableLayout number_pad, share_num_pad, tip_number_pad;
-    private LinearLayout ll_tip_col;
+    private LinearLayout ll_tip_col, ll_result_layout;
     private FrameLayout result_wrapper;
     private View cover;
     private SharedPreferences prefs;
@@ -97,6 +96,7 @@ public class MainActivity extends Activity {
         tip_15 = (Button) findViewById(R.id.tip_15);
         tip_20 = (Button) findViewById(R.id.tip_20);
         toggleBtn = (Button) findViewById(R.id.tip_btn);
+        toggleBtn.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ionicons.ttf"));
 
         number_pad = (TableLayout) findViewById(R.id.number_pad);
         share_num_pad = (TableLayout) findViewById(R.id.share_num_pad);
@@ -114,6 +114,7 @@ public class MainActivity extends Activity {
         tv_share_holder = (TextView) findViewById(R.id.tv_share_holder);
 
         ll_tip_col = (LinearLayout) findViewById(R.id.ll_tip_col);
+        ll_result_layout = (LinearLayout) findViewById(R.id.ll_result_layout);
 
         result_wrapper = (FrameLayout) findViewById(R.id.result_wrapper);
         cover = findViewById(R.id.cover);
@@ -197,6 +198,7 @@ public class MainActivity extends Activity {
                         tv_bill_result.deleteText();
                         break;
                     default:
+                        revealResultAnimation();
                         tv_bill_result.enterText(((TextView) v).getText().toString());
                         break;
                 }
@@ -215,6 +217,7 @@ public class MainActivity extends Activity {
                         tv_tip_result.deleteText();
                         break;
                     default:
+                        revealResultAnimation();
                         tv_tip_result.enterText(((TextView) v).getText().toString());
                         break;
                 }
@@ -373,55 +376,52 @@ public class MainActivity extends Activity {
     }
 
     private void startFlyShareNumberAnimation(){
-        tv_share_result.setVisibility(View.INVISIBLE);
-        tv_share_result.setText(numOfShare+"");
+        if(ll_result_layout.getVisibility() == View.VISIBLE) {
+            tv_share_result.setVisibility(View.INVISIBLE);
+            tv_share_result.setText(numOfShare + "");
 
-        int loc1[] = new int[2];
-        int loc2[] = new int[2];
+            int loc1[] = new int[2];
+            int loc2[] = new int[2];
 
-        tv_share_num.getLocationOnScreen(loc1);
-        tv_share_result.getLocationOnScreen(loc2);
+            tv_share_num.getLocationOnScreen(loc1);
+            tv_share_result.getLocationOnScreen(loc2);
 
-        float x1 = loc1[0];
-        float y1 = loc1[1] - statusBarHeight;
+            float x1 = loc1[0];
+            float y1 = loc1[1] - statusBarHeight;
 
-        float x3 = loc2[0];
-        float y3 = loc2[1] - statusBarHeight;
+            float x3 = loc2[0];
+            float y3 = loc2[1] - statusBarHeight;
 
-        tv_share_holder.setVisibility(View.VISIBLE);
-        tv_share_holder.setText(numOfShare + "");
-        tv_share_holder.setTextSize(TypedValue.COMPLEX_UNIT_SP, pixelsToSp(tv_share_num.getTextSize()));
+            tv_share_holder.setVisibility(View.VISIBLE);
+            tv_share_holder.setText(numOfShare + "");
+            tv_share_holder.setTextSize(TypedValue.COMPLEX_UNIT_SP, pixelsToSp(tv_share_num.getTextSize()));
 
-        tv_share_holder.setX(x3);
-        tv_share_holder.setY(y3);
+            tv_share_holder.setX(x3);
+            tv_share_holder.setY(y3);
 
 
-        final Path path = new Path();
-        path.moveTo(x1, y1);
+            final Path path = new Path();
+            path.moveTo(x1, y1);
 
-        final float x2 = (x1 + x3) / 2;
-        final float y2 = y1;
+            final float x2 = (x1 + x3) / 2;
+            final float y2 = y1;
 
-        path.quadTo(x2, y2, x3, y3);
+            path.quadTo(x2, y2, x3, y3);
 
-        ObjectAnimator moveAnimation = ObjectAnimator.ofFloat(tv_share_holder, View.X, View.Y, path);
-        moveAnimation.setAutoCancel(true);
-//                moveAnimation.addListener(new AnimatorListenerAdapter() {
-//                    @Override
-//                    public void onAnimationEnd(Animator animation) {
-//                        super.onAnimationEnd(animation);
-//                        if(mHandler==null){
-//                            mHandler = new Handler();
-//                            mRunnable = new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    startSplitAmountAnimation();
-//                                }
-//                            };
-//                        }
-//                    }
-//                });
-        moveAnimation.start();
+            ObjectAnimator moveAnimation = ObjectAnimator.ofFloat(tv_share_holder, View.X, View.Y, path);
+            moveAnimation.setAutoCancel(true);
+
+            moveAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    tv_share_holder.setVisibility(View.GONE);
+                    tv_share_result.setText(numOfShare+"");
+                    tv_share_result.setVisibility(View.VISIBLE);
+                }
+            });
+            moveAnimation.start();
+        }
     }
 
     private void startSplitAmountAnimation(){
@@ -530,14 +530,14 @@ public class MainActivity extends Activity {
     private void toggleBillTipBtn() {
         flipNumberPad();
 
-        if (toggleBtn.getText().toString().equalsIgnoreCase(getString(R.string.tip))) {
-            toggleBtn.setText(getString(R.string.bill));
+        if (currentState == STATE_BILL) {
+            toggleBtn.setText(getString(R.string.edit_bill));
             toggleBtn.setBackground(getDrawable(R.drawable.bill_btn_selector));
             clearTipSelectState();
             currentState = STATE_TIP;
 
         } else {
-            toggleBtn.setText(getString(R.string.tip));
+            toggleBtn.setText(getString(R.string.edit_tip));
             toggleBtn.setBackground(getDrawable(R.drawable.tip_btn_selector));
             currentState = STATE_BILL;
         }
@@ -545,29 +545,56 @@ public class MainActivity extends Activity {
     }
 
     private void clearWaveAnimation() {
-        int cx = 0;
-        int cy = result_wrapper.getHeight();
-        // create the animator for this view (the start radius is zero)
-        Animator anim = ViewAnimationUtils.createCircularReveal(cover, cx, cy, 0, result_wrapper.getWidth() * 2);
-        anim.setDuration(getResources().getInteger(R.integer.clear_reveal_time));
+        if(ll_result_layout.getVisibility() == View.VISIBLE) {
+            int cx = 0;
+            int cy = result_wrapper.getHeight();
+            // create the animator for this view (the start radius is zero)
+            Animator anim = ViewAnimationUtils.createCircularReveal(cover, cx, cy, 0, result_wrapper.getWidth() * 2);
+            anim.setDuration(getResources().getInteger(R.integer.clear_reveal_time));
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    cover.setVisibility(View.GONE);
+                    ll_result_layout.setVisibility(View.GONE);
+                    tv_bill_result.clearText();
+                    tv_tip_result.clearText();
+                    tv_total_result.setText("");
+                    tv_split_amount.setText("");
+                    tv_share_num.setText("");
+                    totalAmount = 0;
+                    splitAmount = 0;
+                    tipAmount = 0;
+                }
+            });
+            // make the view visible and start the animation
+            cover.setVisibility(View.VISIBLE);
+            anim.start();
+
+        }
+    }
+
+    private void revealResultAnimation() {
+        if(ll_result_layout.getVisibility() == View.GONE) {
+            int cx = result_wrapper.getWidth();
+            int cy = result_wrapper.getHeight();
+            // create the animator for this view (the start radius is zero)
+            Animator anim = ViewAnimationUtils.createCircularReveal(ll_result_layout, cx / 2, cy / 2, 0, result_wrapper.getWidth());
+            anim.setDuration(getResources().getInteger(R.integer.clear_reveal_time));
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                cover.setVisibility(View.GONE);
-                tv_bill_result.clearText();
-                tv_tip_result.clearText();
-                tv_total_result.setText("");
-                tv_split_amount.setText("");
-                totalAmount = 0;
-                splitAmount = 0;
-                tipAmount = 0;
+                tv_share_result.setText(numOfShare+"");
             }
         });
-        // make the view visible and start the animation
-        cover.setVisibility(View.VISIBLE);
-        anim.start();
+            // make the view visible and start the animation
+            ll_result_layout.setVisibility(View.VISIBLE);
+            anim.start();
+        }
     }
+
+
 
     public int getStatusBarHeight() {
         int result = 0;
