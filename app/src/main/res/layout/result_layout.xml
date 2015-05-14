@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_smoke"
+    android:background="@color/result_layout_background"
     android:orientation="horizontal"
     android:visibility="gone">
 
@@ -69,7 +69,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/tip"/>
+                android:background="@color/white_smoke"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 
@@ -90,7 +91,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:textSize="24sp"
-                android:textColor="@color/share_title"
+                android:textColor="@color/share_pad"
                 android:text="@string/division"
                 android:fontFamily="sans-serif-light"/>
 
@@ -99,7 +100,7 @@
                 android:layout_width="@dimen/share_number_textView_width"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/share_title"
+                android:textColor="@color/share_pad"
                 android:layout_alignBaseline="@id/division"
                 android:layout_alignParentEnd="true"
                 android:textSize="@dimen/result_label_font_size"
@@ -133,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:textSize="@dimen/final_amount_font_size"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="sans-serif-thin"
                 android:textColor="@color/split_amount_result"/>
 
         </RelativeLayout>

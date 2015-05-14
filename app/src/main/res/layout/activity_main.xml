@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white_smoke">
+        android:background="@color/result_layout_background">
 
 
         <FrameLayout
@@ -81,7 +81,7 @@
         android:layout_width="@dimen/share_number_textView_width"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/share_title"
+        android:textColor="@color/share_text_color"
         android:textSize="@dimen/share_btn_font_size"
         android:fontFamily="sans-serif-light"
         android:visibility="gone"/>

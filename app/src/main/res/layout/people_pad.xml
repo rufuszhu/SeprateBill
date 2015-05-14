@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/share_background"
+    android:background="@color/share_pad"
     android:elevation="@dimen/people_elevation"
     xmlns:geekui="http://schemas.android.com/apk/res-auto">
 
@@ -11,7 +11,7 @@
         android:id="@+id/rl_share_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/share_background"
+        android:background="@color/share_pad"
         android:padding="@dimen/normal_padding">
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_alignBaseline="@+id/tv_share_minus"
             android:layout_below="@+id/tv_share_title"
             android:layout_toEndOf="@+id/tv_share_minus"
-            android:textColor="@color/share_title"
+            android:textColor="@color/share_text_color"
             android:fontFamily="sans-serif-light"
             android:text="@string/num_one"/>
 

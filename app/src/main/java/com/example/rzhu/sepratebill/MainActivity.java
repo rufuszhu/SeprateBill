@@ -57,8 +57,6 @@ public class MainActivity extends Activity {
     private double splitAmount;
     private int currentState;
 
-    private Handler mHandler;
-    private Runnable mRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +94,7 @@ public class MainActivity extends Activity {
         tip_15 = (Button) findViewById(R.id.tip_15);
         tip_20 = (Button) findViewById(R.id.tip_20);
         toggleBtn = (Button) findViewById(R.id.tip_btn);
-        toggleBtn.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ionicons.ttf"));
+        //toggleBtn.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ionicons.ttf"));
 
         number_pad = (TableLayout) findViewById(R.id.number_pad);
         share_num_pad = (TableLayout) findViewById(R.id.share_num_pad);
@@ -133,10 +131,12 @@ public class MainActivity extends Activity {
                 try {
                     numOfShare = Integer.parseInt(tv_share_num.getText().toString());
                     startFlyShareNumberAnimation();
+                    calculateSplitAmount();
                     startSplitAmountAnimation();
                 } catch (Exception e) {
                     numOfShare = 1;
-                    tv_share_result.setText("1");
+                    tv_share_result.setText(getString(R.string.num_one));
+                    calculateSplitAmount();
                 }
 
             }
@@ -158,7 +158,7 @@ public class MainActivity extends Activity {
                 } catch (Exception e) {
                     tipAmount = 0;
                 }
-                if(currentState == STATE_TIP)
+                if (currentState == STATE_TIP)
                     startTipAnimation();
 
                 calculateTotal();
@@ -265,11 +265,11 @@ public class MainActivity extends Activity {
                         clearTipSelectState();
                         v.setSelected(true);
 
-                        if(id == R.id.tip_notip){
+                        if (id == R.id.tip_notip) {
                             tipAmount = 0;
                             tipPercent = 0;
                             tv_tip_result.clearText();
-                        }else if (currentBillAmount.length() > 0) {
+                        } else if (currentBillAmount.length() > 0) {
                             tipPercent = Double.parseDouble(chopLastChar(((TextView) v).getText().toString())) / 100d;
                             tipAmount = Double.parseDouble(currentBillAmount) * tipPercent;
                             tv_tip_result.setText(precision.format(tipAmount));
@@ -352,7 +352,7 @@ public class MainActivity extends Activity {
         super.onResume();
 
         statusBarHeight = getStatusBarHeight();
-        if(currentState == STATE_BILL) {
+        if (currentState == STATE_BILL) {
             prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             int savedTip = prefs.getInt(DEFAULT_TIP, 15);
             Log.e(TAG, "savedTip: " + savedTip);
@@ -375,8 +375,8 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void startFlyShareNumberAnimation(){
-        if(ll_result_layout.getVisibility() == View.VISIBLE) {
+    private void startFlyShareNumberAnimation() {
+        if (ll_result_layout.getVisibility() == View.VISIBLE) {
             tv_share_result.setVisibility(View.INVISIBLE);
             tv_share_result.setText(numOfShare + "");
 
@@ -416,7 +416,7 @@ public class MainActivity extends Activity {
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
                     tv_share_holder.setVisibility(View.GONE);
-                    tv_share_result.setText(numOfShare+"");
+                    tv_share_result.setText(numOfShare + "");
                     tv_share_result.setVisibility(View.VISIBLE);
                 }
             });
@@ -424,26 +424,26 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void startSplitAmountAnimation(){
-        calculateSplitAmount();
-        tv_split_amount.setScaleX(0);
-        tv_split_amount.setScaleY(0);
-        tv_split_amount.setAlpha(0);
-        tv_split_amount.animate().scaleX(1).scaleY(1).setInterpolator(new BounceInterpolator()).alpha(1).setDuration(1000).start();
+    private void startSplitAmountAnimation() {
+        if (!tv_split_amount.getText().toString().equalsIgnoreCase(getString(R.string.zero_value))) {
+            tv_split_amount.setScaleX(0);
+            tv_split_amount.setScaleY(0);
+            tv_split_amount.setAlpha(0);
+            tv_split_amount.animate().scaleX(1).scaleY(1).setInterpolator(new OvershootInterpolator()).alpha(1).setDuration(1000).start();
+        }
     }
 
-    private void startBillAnimation(){
+    private void startBillAnimation() {
         tv_bill_result.setScaleX(0.9f);
         tv_bill_result.setScaleY(0.9f);
         tv_bill_result.animate().scaleX(1).scaleY(1).setInterpolator(new OvershootInterpolator()).alpha(1).setDuration(500).start();
     }
 
-    private void startTipAnimation(){
+    private void startTipAnimation() {
         tv_tip_result.setScaleX(0.9f);
         tv_tip_result.setScaleY(0.9f);
         tv_tip_result.animate().scaleX(1).scaleY(1).setInterpolator(new OvershootInterpolator()).alpha(1).setDuration(500).start();
     }
-
 
 
     private void calculateTotal() {
@@ -467,7 +467,7 @@ public class MainActivity extends Activity {
 
     private void calculateSplitAmount() {
 
-        if (totalAmount != 0 && numOfShare != 0) {
+        if (numOfShare != 0) {
             splitAmount = totalAmount / (double) numOfShare;
             tv_split_amount.setText(precision.format(splitAmount));
         }
@@ -535,7 +535,9 @@ public class MainActivity extends Activity {
             toggleBtn.setBackground(getDrawable(R.drawable.bill_btn_selector));
             clearTipSelectState();
             currentState = STATE_TIP;
-
+            tipPercent = 0;
+            tipAmount = 0;
+            tv_tip_result.setText(getString(R.string.zero_value));
         } else {
             toggleBtn.setText(getString(R.string.edit_tip));
             toggleBtn.setBackground(getDrawable(R.drawable.tip_btn_selector));
@@ -545,7 +547,8 @@ public class MainActivity extends Activity {
     }
 
     private void clearWaveAnimation() {
-        if(ll_result_layout.getVisibility() == View.VISIBLE) {
+        //cover is visible means it is animating
+        if (cover.getVisibility() == View.GONE && ll_result_layout.getVisibility() == View.VISIBLE) {
             int cx = 0;
             int cy = result_wrapper.getHeight();
             // create the animator for this view (the start radius is zero)
@@ -567,6 +570,11 @@ public class MainActivity extends Activity {
                     tipAmount = 0;
                 }
             });
+            if (currentState == STATE_BILL) {
+                cover.setBackgroundColor(getResources().getColor(R.color.bill_pad));
+            } else {
+                cover.setBackgroundColor(getResources().getColor(R.color.tip_pad));
+            }
             // make the view visible and start the animation
             cover.setVisibility(View.VISIBLE);
             anim.start();
@@ -575,25 +583,24 @@ public class MainActivity extends Activity {
     }
 
     private void revealResultAnimation() {
-        if(ll_result_layout.getVisibility() == View.GONE) {
+        if (ll_result_layout.getVisibility() == View.GONE) {
             int cx = result_wrapper.getWidth();
             int cy = result_wrapper.getHeight();
             // create the animator for this view (the start radius is zero)
             Animator anim = ViewAnimationUtils.createCircularReveal(ll_result_layout, cx / 2, cy / 2, 0, result_wrapper.getWidth());
             anim.setDuration(getResources().getInteger(R.integer.clear_reveal_time));
-        anim.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                tv_share_result.setText(numOfShare+"");
-            }
-        });
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    tv_share_result.setText(numOfShare + "");
+                }
+            });
             // make the view visible and start the animation
             ll_result_layout.setVisibility(View.VISIBLE);
             anim.start();
         }
     }
-
 
 
     public int getStatusBarHeight() {
@@ -607,7 +614,7 @@ public class MainActivity extends Activity {
 
     public float pixelsToSp(float px) {
         float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
-        return px/scaledDensity;
+        return px / scaledDensity;
     }
 
 }
