@@ -17,8 +17,10 @@
     <string name="num_clear">CLR</string>
 
     <string name="total">Total</string>
-    <string name="edit_tip">\uf2bf Tip</string>
-    <string name="edit_bill">\uf2bf Bill</string>
+    <!--<string name="edit_tip">\uf2bf Tip</string>-->
+    <!--<string name="edit_bill">\uf2bf Bill</string>-->
+    <string name="edit_tip">Edit Tip</string>
+    <string name="edit_bill">Edit Bill</string>
     <string name="tip">Tip</string>
     <string name="bill">Bill</string>
     <string name="share_title">Share by how many people</string>
@@ -28,5 +30,7 @@
     <string name="division">\u00F7</string>
 
     <string name="icon_back_space">\uf3bf</string>
+    <string name="no_tip">No Tip</string>
+    <string name="zero_value">00.00</string>
 
 </resources>

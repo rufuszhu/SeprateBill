@@ -22,10 +22,12 @@
     <Button
         android:id="@+id/tip_notip"
         style="@style/TipText"
-        android:text="no tip" />
+        android:textAllCaps="false"
+        android:text="@string/no_tip" />
     <Button
         android:id="@+id/tip_btn"
         style="@style/TipBillToggleBtn"
+        android:textAllCaps="false"
         android:text="@string/edit_tip"
         />
 </LinearLayout>
