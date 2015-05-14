@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/display_layout"
+        android:layout_height="100dp"
+        android:layout_width="fill_parent"
+        android:background="@color/white_smoke"
+        android:elevation="@dimen/result_elevation">
+
+        <include android:id="@+id/display_layout_include"
+            layout="@layout/display_layout_include"/>
+
+        <View
+            android:id="@+id/cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bill_pad"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/control_layout"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/display_layout"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <include
+            layout="@layout/num_pad"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="3"/>
+
+        <include
+            layout="@layout/tip_column"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"/>
+
+        <include layout="@layout/people_pad"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="3"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

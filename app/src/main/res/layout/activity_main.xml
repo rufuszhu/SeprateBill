@@ -20,7 +20,7 @@
 
             <include
                 android:id="@+id/ll_result_layout"
-                layout="@layout/result_layout"></include>
+                layout="@layout/result_layout"/>
 
             <View
                 android:id="@+id/cover"

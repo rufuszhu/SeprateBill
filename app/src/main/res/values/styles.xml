@@ -1,10 +1,27 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.NoActionBar">
-        <!-- Customize your theme here. -->
     </style>
 
+    <style name="display_layout_label"
+        parent="vertical_list_items">
+        <item name="android:paddingLeft">@dimen/normal_padding</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textSize">@dimen/result_label_font_size</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
+    </style>
 
+    <style name="vertical_list_items">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="table_row_div4">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 
 </resources>

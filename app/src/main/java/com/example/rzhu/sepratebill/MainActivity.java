@@ -38,8 +38,6 @@ public class MainActivity extends Activity {
     private final int STATE_BILL = 2;
     private Button tip_20, tip_15, tip_10, tip_notip, toggleBtn;
     private TextView bill_clear, bill_del, bill_0, bill_1, bill_2, bill_3, bill_4, bill_5, bill_6, bill_7, bill_8, bill_9;
-    private TextView tip_clear, tip_del, tip_0, tip_1, tip_2, tip_3, tip_4, tip_5, tip_6, tip_7, tip_8, tip_9;
-    private TextView ppl_clear, ppl_del, ppl_0, ppl_1, ppl_2, ppl_3, ppl_4, ppl_5, ppl_6, ppl_7, ppl_8, ppl_9;
     private TextView tv_total_result, tv_share_num, tv_share_back, tv_share_minus, tv_share_plus, tv_split_amount, tv_share_result, tv_share_holder;
     private AtmTextView tv_bill_result, tv_tip_result;
     private TableLayout number_pad, share_num_pad, tip_number_pad;
@@ -80,16 +78,6 @@ public class MainActivity extends Activity {
         bill_7 = (TextView) findViewById(R.id.bill_7);
         bill_8 = (TextView) findViewById(R.id.bill_8);
         bill_9 = (TextView) findViewById(R.id.bill_9);
-
-        ppl_1 = (TextView) findViewById(R.id.ppl_1);
-        ppl_2 = (TextView) findViewById(R.id.ppl_2);
-        ppl_3 = (TextView) findViewById(R.id.ppl_3);
-        ppl_4 = (TextView) findViewById(R.id.ppl_4);
-        ppl_5 = (TextView) findViewById(R.id.ppl_5);
-        ppl_6 = (TextView) findViewById(R.id.ppl_6);
-        ppl_7 = (TextView) findViewById(R.id.ppl_7);
-        ppl_8 = (TextView) findViewById(R.id.ppl_8);
-        ppl_9 = (TextView) findViewById(R.id.ppl_9);
 
         tip_notip = (Button) findViewById(R.id.tip_notip);
         tip_10 = (Button) findViewById(R.id.tip_10);
@@ -593,8 +581,6 @@ public class MainActivity extends Activity {
             anim.start();
         }
     }
-
-
 
     public int getStatusBarHeight() {
         int result = 0;

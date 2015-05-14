@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_smoke"
+    android:orientation="horizontal"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/display_layout_label"
+            android:textColor="@color/bill_pad"
+            android:text="@string/bill" />
+
+        <TextView
+            style="@style/display_layout_label"
+            android:textColor="@color/tip_pad"
+            android:text="@string/tip" />
+
+        <TextView
+            style="@style/display_layout_label"
+            android:textColor="@color/tip"
+            android:text="@string/total" />
+
+        <TextView
+            style="@style/display_layout_label"
+            android:textColor="@color/share_title"
+            android:text="@string/split" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="80dp">
+
+        <com.example.rzhu.sepratebill.AtmTextView
+            android:id="@+id/tv_bill_result"
+            style="@style/vertical_list_items"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/result_label_font_size"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/bill_pad"/>
+
+        <RelativeLayout style="@style/vertical_list_items">
+
+            <TextView
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/result_label_font_size"
+                android:textColor="@color/tip_pad"
+                android:text="@string/plus"
+                android:fontFamily="sans-serif-light"/>
+
+            <com.example.rzhu.sepratebill.AtmTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/tip_pad"
+                android:id="@+id/tv_tip_result"
+                android:layout_alignBaseline="@id/plus"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/result_label_font_size"
+                android:fontFamily="sans-serif-light"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/tip"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_total_result"
+            style="@style/vertical_list_items"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/result_label_font_size"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/tip"/>
+
+        <RelativeLayout style="@style/vertical_list_items">
+
+            <TextView
+                android:id="@+id/division"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/result_label_font_size"
+                android:textColor="@color/share_title"
+                android:text="@string/division"
+                android:fontFamily="sans-serif-light"/>
+
+            <TextView
+                android:id="@+id/tv_share_result"
+                android:layout_width="@dimen/share_number_textView_width"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/share_title"
+                android:layout_alignBaseline="@id/division"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/result_label_font_size"
+                android:fontFamily="sans-serif-light"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_split_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="200dp"
+        android:textSize="@dimen/final_amount_font_size"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/split_amount_result"/>
+
+</RelativeLayout>
