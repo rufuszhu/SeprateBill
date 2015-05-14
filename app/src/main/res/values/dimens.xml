@@ -22,4 +22,10 @@
     <dimen name="share_title_font_size">18sp</dimen>
     <dimen name="share_number_textView_width">30dp</dimen>
 
+
+    <!-- ======================Landscape=========================== -->
+    <dimen name="share_btn_height">30dp</dimen>
+    <dimen name="share_btn_width">90dp</dimen>
+
+
 </resources>

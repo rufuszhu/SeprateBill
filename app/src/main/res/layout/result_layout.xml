@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/result_layout_background"
     android:orientation="horizontal"
-    android:visibility="gone">
+    android:visibility="visible">
 
     <LinearLayout
         android:layout_width="70dp"
@@ -70,7 +70,7 @@
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
                 android:background="@color/white_smoke"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
         </RelativeLayout>
 

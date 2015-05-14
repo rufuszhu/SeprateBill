@@ -1,13 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
 <TableLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:geekui="http://schemas.android.com/apk/res-auto"
     android:id="@+id/share_num_pad"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:stretchColumns="0,1,2"
     android:background="@color/share_pad"
-    tools:showIn="@layout/people_pad">
+    tools:showIn="@layout/activity_main_landscape">
 
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5">
+        <RelativeLayout
+            android:layout_span="3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+            android:id="@+id/tv_share_title"
+            style="@style/ShareBtnTitle"
+            android:text="@string/share_title"/>
+
+            <TextView
+            android:id="@+id/tv_share_minus"
+            android:layout_below="@+id/tv_share_title"
+            style="@style/ShareBtnText"
+            android:text="@string/minus"/>
+
+            <TextView
+            android:id="@+id/tv_share_num"
+            android:layout_width="@dimen/share_number_textView_width"
+            android:layout_below="@id/tv_share_title"
+            android:layout_toEndOf="@id/tv_share_minus"
+            style="@style/ShareBtnText"
+            android:text="@string/num_one"/>
+
+            <TextView
+            android:id="@+id/tv_share_plus"
+            android:layout_below="@id/tv_share_title"
+            android:layout_toEndOf="@id/tv_share_num"
+            style="@style/ShareBtnText"
+            android:text="@string/plus"/>
+
+            <com.example.rzhu.sepratebill.TypefaceTextView
+            android:id="@+id/tv_share_back"
+            android:layout_below="@id/tv_share_title"
+            android:layout_toEndOf="@id/tv_share_plus"
+            style="@style/ShareBtnText"
+            android:text="@string/icon_back_space"
+            geekui:customTypeface="fonts/ionicons.ttf"/>
+        </RelativeLayout>
+    </TableRow>
     <TableRow style="@style/table_row_div4">
 
         <TextView

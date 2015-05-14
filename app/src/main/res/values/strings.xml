@@ -1,9 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SeprateBill</string>
 
+    <string name="app_name">SeprateBill</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
     <string name="num_zero">0</string>
     <string name="num_one">1</string>
     <string name="num_two">2</string>
@@ -15,10 +15,9 @@
     <string name="num_eight">8</string>
     <string name="num_nine">9</string>
     <string name="num_clear">CLR</string>
-
     <string name="total">Total</string>
-    <!--<string name="edit_tip">\uf2bf Tip</string>-->
-    <!--<string name="edit_bill">\uf2bf Bill</string>-->
+    <!-- <string name="edit_tip">\uf2bf Tip</string> -->
+    <!-- <string name="edit_bill">\uf2bf Bill</string> -->
     <string name="edit_tip">Edit Tip</string>
     <string name="edit_bill">Edit Bill</string>
     <string name="tip">Tip</string>
@@ -28,7 +27,6 @@
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="division">\u00F7</string>
-
     <string name="icon_back_space">\uf3bf</string>
     <string name="no_tip">No Tip</string>
     <string name="zero_value">00.00</string>

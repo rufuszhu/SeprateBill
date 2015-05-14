@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material.NoActionBar">
+        <item name="android:colorPrimary">@color/bill_pad</item>
+        <item name="android:colorPrimaryDark">@color/bill_pad</item>
+    </style>
+
+
+    <!-- Share pad-->
+    <style name="ShareBtnTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/normal_padding</item>
+        <item name="android:paddingBottom">@dimen/normal_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/share_title_font_size</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
+        <item name="android:textColor">@color/share_text_color</item>
+    </style>
+
+    <style name="ShareBtnText" parent="@android:style/Widget.Material.Light.Button.Borderless">
+        <item name="android:layout_width">@dimen/share_btn_width</item>
+        <item name="android:layout_height">@dimen/share_btn_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/ripple_share</item>
+        <item name="android:textColor">@color/share_text_color</item>
+        <item name="android:textSize">@dimen/share_btn_font_size</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
+    </style>
+
+    <style name="ShareNumberText" parent="@android:style/Widget.Material.Light.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/ripple_share</item>
+        <item name="android:textSize">@dimen/number_font_size</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
+        <item name="android:textColor">@color/share_text_color</item>
+    </style>
+
+</resources>

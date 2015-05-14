@@ -6,9 +6,8 @@
 
     <RelativeLayout
         android:id="@+id/display_layout"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_width="fill_parent"
-        android:background="@color/white_smoke"
         android:elevation="@dimen/result_elevation">
 
         <include android:id="@+id/display_layout_include"
@@ -42,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"/>
 
-        <include layout="@layout/people_pad"
+        <include layout="@layout/share_pad_landscape"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="3"/>
