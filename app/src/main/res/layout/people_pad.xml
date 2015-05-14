@@ -61,7 +61,7 @@
     <include layout="@layout/share_number_pad"
         android:layout_below="@+id/rl_share_title"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"></include>
+        android:layout_width="match_parent"/>
 
 
 
