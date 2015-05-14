@@ -590,10 +590,6 @@ public class MainActivity extends Activity {
         }
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fc9da9db16d6fc692054346acb0bea266847e310
     public int getStatusBarHeight() {
         int result = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
