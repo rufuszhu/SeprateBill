@@ -6,12 +6,12 @@
 
     <RelativeLayout
         android:id="@+id/display_layout"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/display_layout_height_land"
         android:layout_width="fill_parent"
-        android:elevation="@dimen/result_elevation">
+        android:elevation="@dimen/display_pad_elevation">
 
         <include android:id="@+id/display_layout_include"
-            layout="@layout/display_layout_include"/>
+            layout="@layout/display_layout_landscape"/>
 
         <View
             android:id="@+id/cover"
@@ -22,7 +22,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/control_layout"
+        android:id="@+id/control_layout_land"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:layout_below="@id/display_layout"
@@ -39,13 +39,24 @@
             layout="@layout/tip_column"
             android:layout_height="match_parent"
             android:layout_width="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="0.8"/>
 
-        <include layout="@layout/share_pad_landscape"
+        <include layout="@layout/share_pad"
+            android:paddingBottom="@dimen/normal_padding"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="3"/>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_share_holder"
+        android:layout_width="@dimen/share_number_textView_width"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/share_text_color"
+        android:textSize="@dimen/share_btn_font_size"
+        android:fontFamily="sans-serif-light"
+        android:visibility="gone"/>
 
 </RelativeLayout>

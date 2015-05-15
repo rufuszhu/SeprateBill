@@ -4,30 +4,30 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/tip"
+    android:background="@color/tip_opt"
     android:elevation="@dimen/tip_elevation">
 
     <Button
         android:id="@+id/tip_20"
-        style="@style/TipText"
-        android:text="20%" />
+        style="@style/tip_opt_btn"
+        android:text="@string/tip_op3" />
     <Button
         android:id="@+id/tip_15"
-        style="@style/TipText"
-        android:text="15%" />
+        style="@style/tip_opt_btn"
+        android:text="@string/tip_op2" />
     <Button
         android:id="@+id/tip_10"
-        style="@style/TipText"
-        android:text="10%" />
+        style="@style/tip_opt_btn"
+        android:text="@string/tip_op1" />
     <Button
-        android:id="@+id/tip_notip"
-        style="@style/TipText"
+        android:id="@+id/tip_0"
+        style="@style/tip_opt_btn"
         android:textAllCaps="false"
         android:text="@string/no_tip" />
     <Button
         android:id="@+id/tip_btn"
-        style="@style/TipBillToggleBtn"
+        style="@style/tip_bill_toggle_btn"
         android:textAllCaps="false"
-        android:text="@string/edit_tip"
-        />
+        android:text="@string/edit_tip" />
+
 </LinearLayout>

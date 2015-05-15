@@ -5,38 +5,74 @@
         <item name="android:colorPrimaryDark">@color/bill_pad</item>
     </style>
 
+    <!-- Display panel -->
+    <style name="horizontal_list_items">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_span">1</item>
+    </style>
 
-    <!-- Share pad-->
-    <style name="ShareBtnTitle">
+    <style name="display_layout_label"
+        parent="horizontal_list_items">
+        <item name="android:paddingLeft">@dimen/normal_padding</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">@dimen/result_label_font_size</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
+    </style>
+
+    <style name="display_layout_number"
+        parent="horizontal_list_items">
+        <item name="android:paddingLeft">@dimen/normal_padding</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textSize">@dimen/result_label_font_size</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
+    </style>
+
+    <!-- Number pad (left) -->
+    <style name="number_text"
+        parent="@android:style/Widget.Material.Light.Button.Borderless">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/normal_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textSize">@dimen/number_font_size_land</item>
+        <item name="android:fontFamily">"sans-serif-light"</item>
+    </style>
+    <style name="bill_number_text"
+        parent="number_text">
+        <item name="android:background">@drawable/ripple_bill_number</item>
+    </style>
+
+    <style name="tip_number_text"
+        parent="number_text">
+        <item name="android:background">@drawable/ripple_tip_number</item>
+    </style>
+
+
+    <!-- Share pad (right) -->
+    <style name="share_title">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">@dimen/normal_padding</item>
-        <item name="android:paddingBottom">@dimen/normal_padding</item>
+        <item name="android:layout_marginTop">@dimen/small_padding</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/share_title_font_size</item>
+        <item name="android:textSize">@dimen/share_title_font_size_land</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
         <item name="android:textColor">@color/share_text_color</item>
     </style>
 
-    <style name="ShareBtnText" parent="@android:style/Widget.Material.Light.Button.Borderless">
-        <item name="android:layout_width">@dimen/share_btn_width</item>
-        <item name="android:layout_height">@dimen/share_btn_height</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/ripple_share</item>
-        <item name="android:textColor">@color/share_text_color</item>
-        <item name="android:textSize">@dimen/share_btn_font_size</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
+    <style name="share_btn_text"
+        parent="share_number_text">
+        <item name="android:layout_width">@dimen/share_btn_width_land</item>
+        <item name="android:layout_height">@dimen/share_btn_height_land</item>
     </style>
 
-    <style name="ShareNumberText" parent="@android:style/Widget.Material.Light.Button.Borderless">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/ripple_share</item>
-        <item name="android:textSize">@dimen/number_font_size</item>
+    <style name="share_number_text"
+        parent="number_text">
+        <item name="android:background">@drawable/ripple_share_number</item>
+        <item name="android:textSize">@dimen/number_font_size_land</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
         <item name="android:textColor">@color/share_text_color</item>
     </style>

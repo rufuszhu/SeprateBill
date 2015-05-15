@@ -6,22 +6,22 @@
     android:layout_height="fill_parent"
     android:stretchColumns="0,1,2"
     android:background="@color/share_pad"
-    tools:showIn="@layout/people_pad">
+    tools:showIn="@layout/share_pad_portrait">
 
     <TableRow style="@style/table_row_div4">
 
         <TextView
-            style="@style/ShareNumberText"
+            style="@style/share_number_text"
             android:text="@string/num_one"
             android:layout_column="0" />
 
         <TextView
-            style="@style/ShareNumberText"
+            style="@style/share_number_text"
             android:text="@string/num_two"
             android:layout_column="1" />
 
         <TextView
-            style="@style/ShareNumberText"
+            style="@style/share_number_text"
             android:text="@string/num_three"
             android:layout_column="2" />
 
@@ -30,17 +30,17 @@
     <TableRow style="@style/table_row_div4">
 
         <TextView
-            style="@style/ShareNumberText"
+            style="@style/share_number_text"
             android:text="@string/num_four"
             android:layout_column="0" />
 
         <TextView
-            style="@style/ShareNumberText"
+            style="@style/share_number_text"
             android:text="@string/num_five"
             android:layout_column="1" />
 
         <TextView
-            style="@style/ShareNumberText"
+            style="@style/share_number_text"
             android:text="@string/num_six"
             android:layout_column="2" />
 
@@ -49,17 +49,17 @@
     <TableRow style="@style/table_row_div4">
 
         <TextView
-            style="@style/ShareNumberText"
+            style="@style/share_number_text"
             android:text="@string/num_seven"
             android:layout_column="0" />
 
         <TextView
-            style="@style/ShareNumberText"
+            style="@style/share_number_text"
             android:text="@string/num_eight"
             android:layout_column="1" />
 
         <TextView
-            style="@style/ShareNumberText"
+            style="@style/share_number_text"
             android:text="@string/num_nine"
             android:layout_column="2" />
 

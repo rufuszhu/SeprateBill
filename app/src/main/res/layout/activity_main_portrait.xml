@@ -4,23 +4,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/result_layout_background">
+        <RelativeLayout
+            android:id="@+id/display_layout"
+            android:layout_height="@dimen/display_layout_height_port"
+            android:layout_width="fill_parent"
+            android:elevation="@dimen/display_pad_elevation">
 
-
-        <FrameLayout
-            android:id="@+id/result_wrapper"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".3"
-            android:elevation="@dimen/result_elevation">
-
-            <include
-                android:id="@+id/ll_result_layout"
-                layout="@layout/result_layout"/>
+            <include android:id="@+id/display_layout_include"
+                layout="@layout/display_layout_portrait"/>
 
             <View
                 android:id="@+id/cover"
@@ -28,18 +19,19 @@
                 android:layout_height="match_parent"
                 android:background="@color/bill_pad"
                 android:visibility="gone" />
-        </FrameLayout>
-
+        </RelativeLayout>
 
         <com.example.rzhu.sepratebill.CalculatorPadViewPager
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".7"
+            android:id="@+id/control_layout_port"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/display_layout"
             android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <FrameLayout
@@ -49,14 +41,14 @@
                     android:background="@color/white_smoke">
 
                     <include
-                        layout="@layout/number_pad"
+                        layout="@layout/num_pad"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"></include>
+                        android:layout_height="match_parent" />
 
                     <include
                         layout="@layout/tip_number_pad"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"></include>
+                        android:layout_height="match_parent" />
 
                 </FrameLayout>
 
@@ -65,16 +57,13 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/number_pad_margin_right"
-                    android:layout_marginRight="@dimen/number_pad_margin_right"
-                    android:layout_weight=".2"></include>
+                    android:layout_weight=".2"/>
+
             </LinearLayout>
 
-            <include layout="@layout/people_pad"></include>
-
+            <include layout="@layout/share_pad"/>
 
         </com.example.rzhu.sepratebill.CalculatorPadViewPager>
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_share_holder"

@@ -7,7 +7,7 @@
     android:stretchColumns="0,1,2"
     android:background="@color/tip_pad"
     android:visibility="gone"
-    android:elevation="@dimen/number_elevation"
+    android:elevation="@dimen/number_pad_elevation"
     xmlns:geekui="http://schemas.android.com/apk/res-auto">
 
     <TableRow
@@ -17,19 +17,19 @@
 
         <TextView
             android:id="@+id/tip_1"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="1"
             android:layout_column="0" />
 
         <TextView
             android:id="@+id/tip_2"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="2"
             android:layout_column="1" />
 
         <TextView
             android:id="@+id/tip_3"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="3"
             android:layout_column="2" />
 
@@ -44,19 +44,19 @@
 
         <TextView
             android:id="@+id/tip_4"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="4"
             android:layout_column="0" />
 
         <TextView
             android:id="@+id/tip_5"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="5"
             android:layout_column="1" />
 
         <TextView
             android:id="@+id/tip_6"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="6"
             android:layout_column="2" />
 
@@ -69,19 +69,19 @@
 
         <TextView
             android:id="@+id/tip_7"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="@string/num_seven"
             android:layout_column="0" />
 
         <TextView
             android:id="@+id/tip_8"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="@string/num_eight"
             android:layout_column="1" />
 
         <TextView
             android:id="@+id/tip_9"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="@string/num_nine"
             android:layout_column="2" />
 
@@ -95,20 +95,20 @@
 
         <TextView
             android:id="@+id/tip_clear"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="CLR"
             android:layout_column="0" />
 
 
         <TextView
             android:id="@+id/tip_0"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="0"
             android:layout_column="1" />
 
         <com.example.rzhu.sepratebill.TypefaceTextView
             android:id="@+id/tip_del"
-            style="@style/TipNumberText"
+            style="@style/tip_number_text"
             android:text="@string/icon_back_space"
             android:layout_column="2"
             geekui:customTypeface="fonts/ionicons.ttf"/>

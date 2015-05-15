@@ -1,22 +1,7 @@
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Holo.NoActionBar">
-
-    </style>
-
-    <style name="display_layout_label"
-        parent="vertical_list_items">
-        <item name="android:paddingLeft">@dimen/normal_padding</item>
-        <item name="android:gravity">left|center_vertical</item>
-        <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="vertical_list_items">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center_vertical</item>
+    <style name="AppTheme"
+        parent="android:Theme.Holo.NoActionBar">
     </style>
 
     <style name="table_row_div4">
@@ -25,157 +10,26 @@
         <item name="android:layout_weight">1</item>
     </style>
 
-    <!-- =========================================================================== -->
-
-    <style name="NumberText" parent="@android:style/Widget.Material.Light.Button.Borderless">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">.25</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/ripple_bill</item>
-        <item name="android:textSize">@dimen/number_font_size</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="TipNumberText" parent="@android:style/Widget.Material.Light.Button.Borderless">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">.25</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/ripple_tip_number</item>
-        <item name="android:textSize">@dimen/number_font_size</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="TipText" parent="@android:style/Widget.Material.Light.Button">
+    <!-- Tip column (middle) -->
+    <style name="tip_opt_btn"
+        parent="@android:style/Widget.Material.Light.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">.20</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/tip_selector</item>
+        <item name="android:background">@drawable/bill_to_tip_selector</item>
         <item name="android:textSize">@dimen/tip_font_size</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 
-    <style name="TipBillToggleBtn" parent="@android:style/Widget.Material.Light.Button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">.20</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/tip_btn_selector</item>
-        <item name="android:textSize">@dimen/tip_font_size</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-        <item name="android:shadowColor">@color/tip</item>
+    <style name="tip_bill_toggle_btn"
+        parent="tip_opt_btn">
+        <item name="android:background">@drawable/tip_opt_btn_selector</item>
+        <item name="android:shadowColor">@color/tip_opt</item>
         <item name="android:shadowDx">1</item>
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">3</item>
-
-        ="@color/text_shadow"
-        android:="1"
-        android:="1"
-        android:="2"
-    </style>
-
-    <style name="TotalLabelText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:paddingLeft">@dimen/normal_padding</item>
-        <item name="android:gravity">left|center_vertical</item>
-        <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:textColor">@color/white_smoke</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="SplitLabelText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:paddingLeft">@dimen/normal_padding</item>
-        <item name="android:gravity">left|center_vertical</item>
-        <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:textColor">@color/share_pad</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="BillLabelText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:paddingLeft">@dimen/normal_padding</item>
-        <item name="android:gravity">left|center_vertical</item>
-        <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:textColor">@color/bill_pad</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="TipLabelText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:paddingLeft">@dimen/normal_padding</item>
-        <item name="android:gravity">left|center_vertical</item>
-        <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:textColor">@color/tip_pad</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-
-    <style name="BillResultText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center_vertical|right</item>
-        <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:textColor">@color/bill_pad</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="TipResultText">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:layout_alignParentRight">true</item>
-        <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:layout_centerVertical">true</item>
-        <item name="android:textColor">@color/tip_pad</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="TotalResultText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center_vertical|right</item>
-        <item name="android:textSize">@dimen/result_label_font_size</item>
-        <item name="android:textColor">@color/white_smoke</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="ShareResultNumber" parent="@android:style/Widget.Material.Light.Button.Borderless">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:clickable">true</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
-        <item name="android:background">@drawable/ripple_share</item>
-        <item name="android:textSize">@dimen/share_btn_font_size</item>
-        <item name="android:fontFamily">"sans-serif-light"</item>
-    </style>
-
-    <style name="ShareResultText" parent="@android:style/Widget.Material.Light.Button.Borderless">
-        <item name="android:layout_width">@dimen/share_btn_size</item>
-        <item name="android:layout_height">@dimen/share_btn_size</item>
-        <item name="android:gravity">center</item>
-        <item name="android:clickable">true</item>
-        <item name="android:padding">10dp</item>
-        <item name="android:background">@drawable/ripple_share</item>
-        <item name="android:textColor">@color/share_text_color</item>
-        <item name="android:textSize">@dimen/share_result_font_size</item>
     </style>
 
 </resources>
