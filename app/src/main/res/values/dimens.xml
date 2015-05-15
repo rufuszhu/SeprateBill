@@ -8,7 +8,7 @@
     <dimen name="normal_padding">10dp</dimen>
     <dimen name="big_padding">15dp</dimen>
 
-    <dimen name="display_pad_elevation">30dp</dimen>
+    <dimen name="display_pad_elevation">15dp</dimen>
     <dimen name="number_pad_elevation">0dp</dimen>
     <dimen name="tip_elevation">5dp</dimen>
     <dimen name="share_pad_elevation">10dp</dimen>

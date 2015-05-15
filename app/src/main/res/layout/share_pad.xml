@@ -24,6 +24,7 @@
             android:id="@+id/tv_share_minus"
             android:layout_below="@id/tv_share_title"
             style="@style/share_btn_text"
+            android:onClick="shareBtnClicked"
             android:text="@string/minus"/>
 
             <TextView
@@ -40,6 +41,7 @@
             android:layout_below="@id/tv_share_title"
             android:layout_toEndOf="@id/tv_share_num"
             style="@style/share_btn_text"
+            android:onClick="shareBtnClicked"
             android:text="@string/plus"/>
 
             <com.example.rzhu.sepratebill.TypefaceTextView
@@ -48,6 +50,7 @@
             android:layout_toEndOf="@id/tv_share_plus"
             style="@style/share_btn_text"
             android:text="@string/icon_back_space"
+            android:onClick="shareBtnClicked"
             geekui:customTypeface="fonts/ionicons.ttf"/>
         </RelativeLayout>
     </TableRow>
@@ -56,17 +59,23 @@
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_one"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:tag="1"
+            android:onClick="setNumOfShare"/>
 
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_two"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:tag="2"
+            android:onClick="setNumOfShare"/>
 
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_three"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:tag="3"
+            android:onClick="setNumOfShare"/>
 
     </TableRow>
 
@@ -75,17 +84,23 @@
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_four"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:tag="4"
+            android:onClick="setNumOfShare"/>
 
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_five"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:tag="5"
+            android:onClick="setNumOfShare"/>
 
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_six"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:tag="6"
+            android:onClick="setNumOfShare"/>
 
     </TableRow>
 
@@ -94,17 +109,23 @@
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_seven"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:tag="7"
+            android:onClick="setNumOfShare"/>
 
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_eight"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:tag="8"
+            android:onClick="setNumOfShare"/>
 
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_nine"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:tag="9"
+            android:onClick="setNumOfShare"/>
 
     </TableRow>
 

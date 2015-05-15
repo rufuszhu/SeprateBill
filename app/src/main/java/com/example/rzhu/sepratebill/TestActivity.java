@@ -4,14 +4,19 @@ import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -20,7 +25,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
-
 
 public class TestActivity extends Activity {
     private final static String TAG = "MainActivity";
@@ -33,7 +37,7 @@ public class TestActivity extends Activity {
     private SharedPreferences prefs;
     private int statusBarHeight;
     private int currentState;
-    private boolean resultRevealed;
+    private boolean resultRevealed = false;
     private boolean customTip = false;
 
     private float billAmount = 0f;
@@ -48,10 +52,13 @@ public class TestActivity extends Activity {
     private AtmTextView tvBill, tvTip;
     private TextView tvTotal, tvShare, tvSplit;
 
-    private TableLayout numPad, sharePad;
+    private TableLayout numPad;
+    private TextView tvSharePadNum;
 
     private LinearLayout tipCol;
     private Button tip20, tip15, tip10, tip0, toggleBtn;
+
+    private TextView tvHoverNumOfShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +142,13 @@ public class TestActivity extends Activity {
         if(totalAmount!=0f) tvTotal.setText(precision.format(totalAmount));
         tvShare.setText(numOfShare+"");
         if(splitAmount!=0) tvSplit.setText(precision.format(splitAmount));
+        tvSharePadNum.setText(numOfShare+"");
+
+        if(resultRevealed){
+            cover.setVisibility(View.GONE);
+        }else{
+            cover.setVisibility(View.VISIBLE);
+        }
     }
 
     private void findViews() {
@@ -147,8 +161,7 @@ public class TestActivity extends Activity {
         tvSplit = (TextView)displayLayout.findViewById(R.id.tv_split_amount);
 
         numPad = (TableLayout) findViewById(R.id.num_pad);
-
-        sharePad = (TableLayout) findViewById(R.id.share_pad);
+        tvSharePadNum = (TextView) findViewById(R.id.tv_share_num);
 
         tipCol = (LinearLayout) findViewById(R.id.ll_tip_col);
         tip0 = (Button) tipCol.findViewById(R.id.tip_0);
@@ -156,21 +169,29 @@ public class TestActivity extends Activity {
         tip15 = (Button) tipCol.findViewById(R.id.tip_15);
         tip20 = (Button) tipCol.findViewById(R.id.tip_20);
         toggleBtn = (Button) tipCol.findViewById(R.id.tip_btn);
+
+        tvHoverNumOfShare = (TextView) findViewById(R.id.tv_share_holder);
     }
 
     public void numPadClicked(View v) {
-        Log.d(TAG, "Clicked number: " + v.getTag());
         int n = Integer.parseInt((String) v.getTag());
         switch (currentState){
             case STATE_BILL:
+                if (!resultRevealed){
+                    revealAnimation();
+                }
                 if (billAmount<999.99) {
                     billAmount *= 10f;
                     billAmount += 0.01f*n;
+                    textUpdateAnimation(tvBill);
                     tvBill.enterText((String)v.getTag());
                     updateTip();
                 }
                 break;
             case STATE_TIP:
+                if (!resultRevealed){
+                    return;
+                }
                 if (tipAmount<999.99) {
                     if(!customTip){
                         clearTipSelectState();
@@ -178,6 +199,7 @@ public class TestActivity extends Activity {
                     }
                     tipAmount *= 10f;
                     tipAmount += 0.01f*n;
+                    textUpdateAnimation(tvTip);
                     tvTip.enterText((String)v.getTag());
                     updateTotal();
                 }
@@ -186,12 +208,12 @@ public class TestActivity extends Activity {
     }
 
     public void numPadClearClicked(View v) {
-        Log.d(TAG, "Clicked clear");
         switch (currentState){
             case STATE_BILL:
-                billAmount = 0f;
-                tvBill.setText("00.00");
-                updateTip();
+//                billAmount = 0f;
+//                tvBill.setText("00.00");
+//                updateTip();
+                clearWaveAnimation();
                 break;
             case STATE_TIP:
                 if(!customTip){
@@ -206,7 +228,6 @@ public class TestActivity extends Activity {
     }
 
     public void numPadBackClicked(View v) {
-        Log.d(TAG, "Clicked back");
         switch (currentState){
             case STATE_BILL:
                 if (billAmount>=0.01) {
@@ -232,7 +253,6 @@ public class TestActivity extends Activity {
                 break;
         }
     }
-
 
     public void setTipPercent(View v) {
         int viewId = v.getId();
@@ -263,7 +283,55 @@ public class TestActivity extends Activity {
 
         prefs.edit().putFloat(DEFAULT_TIP, tipPercent).apply();
         updateTip();
+        textUpdateAnimation(tvTip);
+    }
 
+    public void shareBtnClicked(View v) {
+        if (!resultRevealed){
+            return;
+        }
+
+        switch (v.getId()){
+            case R.id.tv_share_minus:
+                if (numOfShare>1) {
+                    numOfShare--;
+                }else {
+                    return;
+                }
+                break;
+            case R.id.tv_share_plus:
+                if (numOfShare<99) {
+                    numOfShare++;
+                }else {
+                    return;
+                }
+                break;
+            case R.id.tv_share_back:
+                numOfShare = 1;
+                break;
+        }
+
+        tvSharePadNum.setText(numOfShare+"");
+        startFlyShareNumberAnimation();
+        updateTotal();
+    }
+
+    public void setNumOfShare(View v) {
+        if (!resultRevealed){
+            return;
+        }
+
+        int n = Integer.parseInt((String)v.getTag());
+        if (numOfShare==1){
+            numOfShare = n;
+        }else if(numOfShare<10){
+            numOfShare = numOfShare*10+n;
+        }else{
+            return;
+        }
+        tvSharePadNum.setText(numOfShare+"");
+        startFlyShareNumberAnimation();
+        updateTotal();
     }
 
     private void updateTip() {
@@ -295,12 +363,19 @@ public class TestActivity extends Activity {
         }
     }
 
-
     private void clearTipSelectState() {
         tip0.setSelected(false);
         tip10.setSelected(false);
         tip15.setSelected(false);
         tip20.setSelected(false);
+    }
+
+    private void textUpdateAnimation(TextView tv){
+        tv.setScaleX(0.9f);
+        tv.setScaleY(0.9f);
+        tv.animate().scaleX(1).scaleY(1).alpha(1).setDuration(500)
+                .setInterpolator(new OvershootInterpolator())
+                .start();
     }
 
     private void toggleBillTip() {
@@ -361,6 +436,119 @@ public class TestActivity extends Activity {
         flipIn.start();
     }
 
+    private void revealAnimation() {
+        if (!resultRevealed) {
+            resultRevealed = true;
+            cover.setVisibility(View.GONE);
+            displayLayout.setVisibility(View.INVISIBLE);
+            int cx = displayLayout.getWidth();
+            int cy = displayLayout.getHeight();
+            // create the animator for this view (the start radius is zero)
+            Animator anim = ViewAnimationUtils.createCircularReveal(displayLayout, cx / 2, cy / 2, 0, displayLayout.getWidth());
+            anim.setDuration(getResources().getInteger(R.integer.clear_reveal_time));
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                }
+            });
+            // make the view visible and start the animation
+            displayLayout.setVisibility(View.VISIBLE);
+            anim.start();
+        }
+    }
+
+    private void clearWaveAnimation() {
+        //cover is visible means it is animating
+        if (resultRevealed) {
+            resultRevealed = false;
+            int cx = 0;
+            int cy = displayLayout.getHeight();
+            // create the animator for this view (the start radius is zero)
+            Animator anim = ViewAnimationUtils.createCircularReveal(cover, cx, cy, 0, displayLayout.getWidth() * 2);
+            anim.setDuration(getResources().getInteger(R.integer.clear_reveal_time));
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    cover.setVisibility(View.VISIBLE);
+                    tvBill.clearText();
+                    tvTip.clearText();
+                    tvTotal.setText("00.00");
+                    tvSplit.setText("");
+                    billAmount = 0f;
+                    tipAmount = 0f;
+                    totalAmount = 0f;
+                    splitAmount = 0f;
+                }
+            });
+            // make the view visible and start the animation
+            cover.setVisibility(View.VISIBLE);
+            anim.start();
+        }
+    }
+
+    private void startFlyShareNumberAnimation() {
+        if (resultRevealed) {
+            tvShare.setVisibility(View.INVISIBLE);
+            tvShare.setText(numOfShare + "");
+
+            int locStart[] = new int[2];
+            int locEnd[] = new int[2];
+
+            tvSharePadNum.getLocationOnScreen(locStart);
+            tvShare.getLocationOnScreen(locEnd);
+
+            float x1 = locStart[0];
+            float y1 = locStart[1] - statusBarHeight;
+
+            float x3 = locEnd[0];
+            float y3 = locEnd[1] - statusBarHeight;
+
+            tvHoverNumOfShare.setVisibility(View.VISIBLE);
+            tvHoverNumOfShare.setText(numOfShare + "");
+            tvHoverNumOfShare.setTextSize(TypedValue.COMPLEX_UNIT_SP, pixelsToSp(tvSharePadNum.getTextSize()));
+
+            tvHoverNumOfShare.setX(x3);
+            tvHoverNumOfShare.setY(y3);
+
+
+            final Path path = new Path();
+            path.moveTo(x1, y1);
+
+            final float x2 = (x1 + x3) / 2;
+            final float y2 = y1;
+
+            path.quadTo(x2, y2, x3, y3);
+
+            ObjectAnimator moveAnimation = ObjectAnimator.ofFloat(tvHoverNumOfShare, View.X, View.Y, path);
+            moveAnimation.setAutoCancel(true);
+            moveAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    tvHoverNumOfShare.setVisibility(View.GONE);
+                    tvShare.setVisibility(View.VISIBLE);
+                }
+            });
+
+            ObjectAnimator colorAnimation = ObjectAnimator.ofInt(tvHoverNumOfShare, "textColor",
+                    getResources().getColor(R.color.share_text_color), getResources().getColor(R.color.share_pad));
+            colorAnimation.setAutoCancel(true);
+            colorAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    tvHoverNumOfShare.setTextColor(getResources().getColor(R.color.share_text_color));
+                }
+            });
+
+            AnimatorSet set = new AnimatorSet();
+            set.playTogether(moveAnimation, colorAnimation);
+
+            set.start();
+        }
+    }
 
     public int getStatusBarHeight() {
         int result = 0;
@@ -369,5 +557,10 @@ public class TestActivity extends Activity {
             result = getResources().getDimensionPixelSize(resourceId);
         }
         return result;
+    }
+
+    public float pixelsToSp(float px) {
+        float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
+        return px / scaledDensity;
     }
 }

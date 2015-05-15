@@ -2,12 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_background"
     tools:context=".MainActivity">
 
     <RelativeLayout
         android:id="@+id/display_layout"
         android:layout_height="@dimen/display_layout_height_land"
         android:layout_width="fill_parent"
+        android:background="@color/app_background"
         android:elevation="@dimen/display_pad_elevation">
 
         <include android:id="@+id/display_layout_include"
@@ -17,8 +19,8 @@
             android:id="@+id/cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/bill_pad"
-            android:visibility="gone" />
+            android:background="@color/app_background"
+            android:visibility="visible" />
     </RelativeLayout>
 
     <LinearLayout
