@@ -18,23 +18,18 @@ public class AtmTextView extends TextView {
 
     public AtmTextView(Context context) {
         super(context);
-        text = "";
+        setText("00.00");
     }
 
     public AtmTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        text = "";
+        setText("00.00");
 
     }
 
     public AtmTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        text = "";
-    }
-
-    @Override
-    protected void onDraw (Canvas canvas) {
-        super.onDraw(canvas);
+        setText("00.00");
     }
 
     public void enterText(String s){
@@ -64,8 +59,7 @@ public class AtmTextView extends TextView {
 
             text = precision.format(value);
             setText(text);
-        }
-        catch (NumberFormatException e){
+        }catch (NumberFormatException e){
             clearText();
         }
     }

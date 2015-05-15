@@ -28,20 +28,21 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">@dimen/big_padding</item>
+        <item name="android:background">@null</item>
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
         <item name="android:textSize">@dimen/number_font_size_port</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
-    <style name="bill_number_text"
-        parent="number_text">
-        <item name="android:background">@drawable/ripple_bill_number</item>
-    </style>
+    <!--<style name="bill_number_text"-->
+        <!--parent="number_text">-->
+        <!--<item name="android:background">@drawable/ripple_bill</item>-->
+    <!--</style>-->
 
-    <style name="tip_number_text"
-        parent="number_text">
-        <item name="android:background">@drawable/ripple_tip_number</item>
-    </style>
+    <!--<style name="tip_number_text"-->
+        <!--parent="number_text">-->
+        <!--<item name="android:background">@drawable/ripple_tip</item>-->
+    <!--</style>-->
 
     <!-- Share pad (right) -->
     <style name="share_title">
@@ -63,7 +64,7 @@
 
     <style name="share_number_text"
         parent="number_text">
-        <item name="android:background">@drawable/ripple_share_number</item>
+        <item name="android:background">@drawable/ripple_share</item>
         <item name="android:textSize">@dimen/number_font_size_port</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
         <item name="android:textColor">@color/share_text_color</item>

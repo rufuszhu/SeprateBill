@@ -10,24 +10,29 @@
     <Button
         android:id="@+id/tip_20"
         style="@style/tip_opt_btn"
-        android:text="@string/tip_op3" />
+        android:text="@string/tip_op3"
+        android:onClick="setTipPercent"/>
     <Button
         android:id="@+id/tip_15"
         style="@style/tip_opt_btn"
-        android:text="@string/tip_op2" />
+        android:text="@string/tip_op2"
+        android:onClick="setTipPercent"/>
     <Button
         android:id="@+id/tip_10"
         style="@style/tip_opt_btn"
-        android:text="@string/tip_op1" />
+        android:text="@string/tip_op1"
+        android:onClick="setTipPercent"/>
     <Button
         android:id="@+id/tip_0"
         style="@style/tip_opt_btn"
         android:textAllCaps="false"
-        android:text="@string/no_tip" />
+        android:text="@string/no_tip"
+        android:onClick="setTipPercent"/>
     <Button
         android:id="@+id/tip_btn"
         style="@style/tip_bill_toggle_btn"
         android:textAllCaps="false"
-        android:text="@string/edit_tip" />
+        android:text="@string/edit_tip"
+        android:onClick="setTipPercent"/>
 
 </LinearLayout>

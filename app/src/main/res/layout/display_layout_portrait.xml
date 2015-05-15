@@ -4,11 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/app_background"
     android:orientation="horizontal"
-    android:visibility="visible"
     tools:showIn="@layout/activity_main_portrait">
 
     <LinearLayout
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -35,7 +34,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginStart="80dp">
@@ -54,19 +53,19 @@
                 android:id="@+id/plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:textSize="@dimen/result_label_font_size"
+                android:gravity="center"
                 android:textColor="@color/tip_pad"
+                android:layout_alignParentStart="true"
                 android:text="@string/plus"
+                android:textSize="@dimen/result_label_font_size"
                 android:fontFamily="sans-serif-light"/>
 
             <com.example.rzhu.sepratebill.AtmTextView
+                android:id="@+id/tv_tip_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:textColor="@color/tip_pad"
-                android:id="@+id/tv_tip_result"
-                android:layout_alignBaseline="@id/plus"
                 android:layout_alignParentEnd="true"
                 android:textSize="@dimen/result_label_font_size"
                 android:fontFamily="sans-serif-light"/>
@@ -79,7 +78,7 @@
             android:gravity="center_vertical|end"
             android:textSize="@dimen/result_label_font_size"
             android:fontFamily="sans-serif-light"
-            android:textColor="@color/tip_opt"/>
+            android:textColor="@color/white_smoke"/>
 
         <RelativeLayout style="@style/vertical_list_items">
 
@@ -87,12 +86,12 @@
                 android:id="@+id/division"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/result_label_font_size"
+                android:gravity="center"
                 android:textColor="@color/share_pad"
+                android:layout_alignParentStart="true"
                 android:text="@string/division"
-                android:fontFamily="sans-serif-light"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
+                android:textSize="@dimen/result_label_font_size"
+                android:fontFamily="sans-serif-light"/>
 
             <TextView
                 android:id="@+id/tv_share_result"
@@ -100,8 +99,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/share_pad"
-                android:layout_alignBaseline="@id/division"
                 android:layout_alignParentEnd="true"
+                android:text="@string/num_one"
                 android:textSize="@dimen/result_label_font_size"
                 android:fontFamily="sans-serif-light"/>
 
@@ -113,8 +112,8 @@
         android:id="@+id/tv_split_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="200dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
         android:textSize="@dimen/final_amount_font_size"
         android:fontFamily="sans-serif-light"
         android:textColor="@color/split_amount_result"/>

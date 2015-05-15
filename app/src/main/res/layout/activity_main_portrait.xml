@@ -32,25 +32,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
+                android:background="@color/app_background"
                 android:orientation="horizontal">
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                <include
+                    layout="@layout/num_pad"
                     android:layout_weight=".8"
-                    android:background="@color/white_smoke">
-
-                    <include
-                        layout="@layout/num_pad"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <include
-                        layout="@layout/tip_number_pad"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                </FrameLayout>
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
 
                 <include
                     layout="@layout/tip_column"

@@ -1,7 +1,7 @@
 <TableLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:geekui="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/share_num_pad"
+    android:id="@+id/share_pad"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:stretchColumns="0,1,2"

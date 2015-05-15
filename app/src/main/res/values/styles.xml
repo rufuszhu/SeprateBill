@@ -18,14 +18,14 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/bill_to_tip_selector</item>
+        <item name="android:background">@drawable/tip_opt_btn</item>
         <item name="android:textSize">@dimen/tip_font_size</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 
     <style name="tip_bill_toggle_btn"
         parent="tip_opt_btn">
-        <item name="android:background">@drawable/tip_opt_btn_selector</item>
+        <item name="android:background">@null</item>
         <item name="android:shadowColor">@color/tip_opt</item>
         <item name="android:shadowDx">1</item>
         <item name="android:shadowDy">1</item>
