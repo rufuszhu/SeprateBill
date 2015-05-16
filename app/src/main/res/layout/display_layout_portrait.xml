@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,8 +36,7 @@
     <LinearLayout
         android:layout_width="110dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginStart="80dp">
+        android:orientation="vertical">
 
         <com.example.rzhu.sepratebill.AtmTextView
             android:id="@+id/tv_bill_result"
@@ -97,12 +96,12 @@
                 android:id="@+id/tv_share_result"
                 android:layout_width="@dimen/share_number_textView_width"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="right|center_vertical"
                 android:textColor="@color/share_pad"
                 android:layout_alignParentEnd="true"
                 android:text="@string/num_one"
                 android:textSize="@dimen/result_label_font_size"
-                android:fontFamily="sans-serif-light"/>
+                android:fontFamily="sans-serif-thin"/>
 
         </RelativeLayout>
 
@@ -110,12 +109,12 @@
 
     <TextView
         android:id="@+id/tv_split_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
         android:textSize="@dimen/final_amount_font_size"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="sans-serif-thin"
         android:textColor="@color/split_amount_result"/>
 
-</RelativeLayout>
+</LinearLayout>

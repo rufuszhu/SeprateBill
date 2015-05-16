@@ -43,7 +43,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.8"/>
 
-        <include layout="@layout/share_pad"
+        <include layout="@layout/share_pad_landscape"
             android:paddingBottom="@dimen/normal_padding"
             android:layout_height="match_parent"
             android:layout_width="0dp"

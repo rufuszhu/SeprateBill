@@ -52,7 +52,7 @@
 
             </LinearLayout>
 
-            <include layout="@layout/share_pad"/>
+            <include layout="@layout/share_pad_portrait"/>
 
         </com.example.rzhu.sepratebill.CalculatorPadViewPager>
 

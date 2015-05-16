@@ -28,7 +28,8 @@
     <string name="total">Total</string>
     <string name="split">Split</string>
 
-    <string name="share_title">Share by how many people</string>
+    <string name="share_title">Share by </string>
+    <string name="share_title_people">People</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="division">\u00F7</string>

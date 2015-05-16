@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
-public class TestActivity extends Activity {
+public class MainActivity extends Activity {
     private final static String TAG = "MainActivity";
     private static final DecimalFormat precision = new DecimalFormat("00.00");
 
@@ -358,6 +358,10 @@ public class TestActivity extends Activity {
         splitAmount /= 100f;
         if (splitAmount!=0) {
             tvSplit.setText(precision.format(splitAmount));
+            tvSplit.setScaleX(0);
+            tvSplit.setScaleY(0);
+            tvSplit.setAlpha(0);
+            tvSplit.animate().scaleX(1).scaleY(1).setInterpolator(new OvershootInterpolator()).alpha(1).setDuration(1000).start();
         }else{
             tvSplit.setText("");
         }
@@ -512,7 +516,6 @@ public class TestActivity extends Activity {
             tvHoverNumOfShare.setX(x3);
             tvHoverNumOfShare.setY(y3);
 
-
             final Path path = new Path();
             path.moveTo(x1, y1);
 
@@ -532,21 +535,22 @@ public class TestActivity extends Activity {
                 }
             });
 
-            ObjectAnimator colorAnimation = ObjectAnimator.ofInt(tvHoverNumOfShare, "textColor",
-                    getResources().getColor(R.color.share_text_color), getResources().getColor(R.color.share_pad));
-            colorAnimation.setAutoCancel(true);
-            colorAnimation.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationEnd(animation);
-                    tvHoverNumOfShare.setTextColor(getResources().getColor(R.color.share_text_color));
-                }
-            });
+//            ObjectAnimator colorAnimation = ObjectAnimator.ofInt(tvHoverNumOfShare, "textColor",
+//                    getResources().getColor(R.color.share_text_color), getResources().getColor(R.color.share_pad));
+//            colorAnimation.setAutoCancel(true);
+//            colorAnimation.addListener(new AnimatorListenerAdapter() {
+//                @Override
+//                public void onAnimationEnd(Animator animation) {
+//                    super.onAnimationEnd(animation);
+//                    tvHoverNumOfShare.setTextColor(getResources().getColor(R.color.share_text_color));
+//                }
+//            });
 
             AnimatorSet set = new AnimatorSet();
-            set.playTogether(moveAnimation, colorAnimation);
+            //set.playTogether(moveAnimation, colorAnimation);
 
-            set.start();
+            //set.start();
+            moveAnimation.start();
         }
     }
 

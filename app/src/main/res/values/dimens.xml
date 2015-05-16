@@ -8,7 +8,7 @@
     <dimen name="normal_padding">10dp</dimen>
     <dimen name="big_padding">15dp</dimen>
 
-    <dimen name="display_pad_elevation">15dp</dimen>
+    <dimen name="display_pad_elevation">10dp</dimen>
     <dimen name="number_pad_elevation">0dp</dimen>
     <dimen name="tip_elevation">5dp</dimen>
     <dimen name="share_pad_elevation">10dp</dimen>
@@ -22,13 +22,13 @@
 
 
     <dimen name="share_btn_font_size">24sp</dimen>
-    <dimen name="share_number_textView_width">30dp</dimen>
+    <dimen name="share_number_textView_width">40dp</dimen>
 
 
     <!-- ======================Portrait=========================== -->
     <dimen name="display_layout_height_port">180dp</dimen>
     <dimen name="number_font_size_port">26dp</dimen>
-    <dimen name="share_title_font_size_port">20sp</dimen>
+    <dimen name="share_title_font_size_port">24sp</dimen>
     <dimen name="share_btn_height_port">40dp</dimen>
     <dimen name="share_btn_width_port">50dp</dimen>
 

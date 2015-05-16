@@ -1,0 +1,135 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:geekui="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/share_pad"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/share_pad"
+    android:stretchColumns="0,1,2">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_share_title"
+                style="@style/share_title"
+                android:text="@string/share_title" />
+
+            <TextView
+                android:id="@+id/tv_share_num"
+                style="@style/share_title"
+                android:gravity="center"
+                android:layout_width="@dimen/share_number_textView_width"
+                android:clickable="false"
+                android:text="@string/num_one" />
+
+            <TextView
+                android:id="@+id/tv_share_people"
+                style="@style/share_title"
+                android:text="@string/share_title_people" />
+
+        </LinearLayout>
+
+
+    <TableRow style="@style/table_row_div4">
+
+        <TextView
+            style="@style/share_number_text"
+            android:layout_column="0"
+            android:onClick="setNumOfShare"
+            android:tag="1"
+            android:text="@string/num_one" />
+
+        <TextView
+            style="@style/share_number_text"
+            android:layout_column="1"
+            android:onClick="setNumOfShare"
+            android:tag="2"
+            android:text="@string/num_two" />
+
+        <TextView
+            style="@style/share_number_text"
+            android:layout_column="2"
+            android:onClick="setNumOfShare"
+            android:tag="3"
+            android:text="@string/num_three" />
+
+    </TableRow>
+
+    <TableRow style="@style/table_row_div4">
+
+        <TextView
+            style="@style/share_number_text"
+            android:layout_column="0"
+            android:onClick="setNumOfShare"
+            android:tag="4"
+            android:text="@string/num_four" />
+
+        <TextView
+            style="@style/share_number_text"
+            android:layout_column="1"
+            android:onClick="setNumOfShare"
+            android:tag="5"
+            android:text="@string/num_five" />
+
+        <TextView
+            style="@style/share_number_text"
+            android:layout_column="2"
+            android:onClick="setNumOfShare"
+            android:tag="6"
+            android:text="@string/num_six" />
+
+    </TableRow>
+
+    <TableRow style="@style/table_row_div4">
+
+        <TextView
+            style="@style/share_number_text"
+            android:layout_column="0"
+            android:onClick="setNumOfShare"
+            android:tag="7"
+            android:text="@string/num_seven" />
+
+        <TextView
+            style="@style/share_number_text"
+            android:layout_column="1"
+            android:onClick="setNumOfShare"
+            android:tag="8"
+            android:text="@string/num_eight" />
+
+        <TextView
+            style="@style/share_number_text"
+            android:layout_column="2"
+            android:onClick="setNumOfShare"
+            android:tag="9"
+            android:text="@string/num_nine" />
+
+    </TableRow>
+
+    <TableRow style="@style/table_row_div4">
+
+        <TextView
+            android:id="@+id/tv_share_minus"
+            style="@style/share_number_text"
+            android:onClick="shareBtnClicked"
+            android:text="@string/minus" />
+
+        <TextView
+            android:id="@+id/tv_share_plus"
+            style="@style/share_number_text"
+            android:layout_toEndOf="@id/tv_share_num"
+            android:onClick="shareBtnClicked"
+            android:text="@string/plus" />
+
+        <com.example.rzhu.sepratebill.TypefaceTextView
+            android:id="@+id/tv_share_back"
+            style="@style/share_number_text"
+            android:onClick="shareBtnClicked"
+            android:text="@string/icon_back_space"
+            geekui:customTypeface="fonts/ionicons.ttf" />
+    </TableRow>
+
+</TableLayout>

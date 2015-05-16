@@ -1,61 +1,38 @@
 <TableLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:geekui="http://schemas.android.com/apk/res-auto"
     android:id="@+id/share_pad"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:stretchColumns="0,1,2"
+    android:stretchColumns="0,1,2,3"
     android:background="@color/share_pad">
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_span="3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-            <TextView
+        <TextView
             android:id="@+id/tv_share_title"
             style="@style/share_title"
-            android:text="@string/share_title"/>
+            android:text="@string/share_title" />
 
-            <TextView
-            android:id="@+id/tv_share_minus"
-            android:layout_below="@id/tv_share_title"
-            style="@style/share_btn_text"
-            android:onClick="shareBtnClicked"
-            android:text="@string/minus"/>
-
-            <TextView
+        <TextView
             android:id="@+id/tv_share_num"
+            style="@style/share_title"
+            android:gravity="center"
             android:layout_width="@dimen/share_number_textView_width"
-            android:layout_below="@id/tv_share_title"
-            android:layout_toEndOf="@id/tv_share_minus"
-            style="@style/share_btn_text"
             android:clickable="false"
-            android:text="@string/num_one"/>
+            android:text="@string/num_one" />
 
-            <TextView
-            android:id="@+id/tv_share_plus"
-            android:layout_below="@id/tv_share_title"
-            android:layout_toEndOf="@id/tv_share_num"
-            style="@style/share_btn_text"
-            android:onClick="shareBtnClicked"
-            android:text="@string/plus"/>
+        <TextView
+            android:id="@+id/tv_share_people"
+            style="@style/share_title"
+            android:text="@string/share_title_people" />
 
-            <com.example.rzhu.sepratebill.TypefaceTextView
-            android:id="@+id/tv_share_back"
-            android:layout_below="@id/tv_share_title"
-            android:layout_toEndOf="@id/tv_share_plus"
-            style="@style/share_btn_text"
-            android:text="@string/icon_back_space"
-            android:onClick="shareBtnClicked"
-            geekui:customTypeface="fonts/ionicons.ttf"/>
-        </RelativeLayout>
-    </TableRow>
+    </LinearLayout>
+
     <TableRow style="@style/table_row_div4">
-
         <TextView
             style="@style/share_number_text"
             android:text="@string/num_one"
@@ -76,6 +53,13 @@
             android:layout_column="2"
             android:tag="3"
             android:onClick="setNumOfShare"/>
+
+
+        <TextView
+            android:id="@+id/tv_share_plus"
+            style="@style/share_number_text"
+            android:onClick="shareBtnClicked"
+            android:text="@string/plus"/>
 
     </TableRow>
 
@@ -102,6 +86,12 @@
             android:tag="6"
             android:onClick="setNumOfShare"/>
 
+        <TextView
+            android:id="@+id/tv_share_minus"
+            style="@style/share_number_text"
+            android:onClick="shareBtnClicked"
+            android:text="@string/minus"/>
+
     </TableRow>
 
     <TableRow style="@style/table_row_div4">
@@ -126,6 +116,13 @@
             android:layout_column="2"
             android:tag="9"
             android:onClick="setNumOfShare"/>
+
+        <com.example.rzhu.sepratebill.TypefaceTextView
+            android:id="@+id/tv_share_back"
+            style="@style/share_number_text"
+            android:text="@string/icon_back_space"
+            android:onClick="shareBtnClicked"
+            geekui:customTypeface="fonts/ionicons.ttf"/>
 
     </TableRow>
 
