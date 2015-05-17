@@ -7,24 +7,20 @@
 
     <!-- Display panel -->
     <style name="horizontal_list_items">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/landscape_display_result_item_width</item>
         <item name="android:layout_height">fill_parent</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_span">1</item>
     </style>
 
     <style name="display_layout_label"
         parent="horizontal_list_items">
-        <item name="android:paddingLeft">@dimen/normal_padding</item>
-        <item name="android:gravity">left</item>
+        <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>
 
     <style name="display_layout_number"
         parent="horizontal_list_items">
-        <item name="android:paddingLeft">@dimen/normal_padding</item>
-        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/result_label_font_size</item>
         <item name="android:fontFamily">"sans-serif-light"</item>
     </style>

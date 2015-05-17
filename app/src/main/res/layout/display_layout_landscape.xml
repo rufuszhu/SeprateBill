@@ -1,90 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:stretchColumns="0,1,2,3,4"
-    android:background="@color/app_background"
-    tools:showIn="@layout/activity_main_landscape">
+    android:orientation="horizontal"
+    android:background="@color/app_background">
+    <!--tools:showIn="@layout/activity_main_landscape">-->
 
-    <TableRow android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+    <RelativeLayout
+        android:layout_width="@dimen/landscape_display_result_layout_width"
+        android:layout_height="match_parent">
 
-        <TextView
-            style="@style/display_layout_label"
-            android:textColor="@color/bill_pad"
-            android:text="@string/bill"
-            android:layout_column="0"/>
-
-        <TextView
-            style="@style/display_layout_label"
-            android:textColor="@color/tip_pad"
-            android:text="@string/tip"
-            android:layout_column="1" />
-
-        <TextView
-            style="@style/display_layout_label"
-            android:textColor="@color/white_smoke"
-            android:text="@string/total"
-            android:layout_column="2" />
-
-        <TextView
-            style="@style/display_layout_label"
-            android:textColor="@color/share_pad"
-            android:text="@string/split"
-            android:layout_column="3" />
-
-        <TextView
-            android:layout_height="wrap_content"
+        <View
+            android:id="@+id/mid"
             android:layout_width="0dp"
-            android:layout_weight="1.5"
-            android:text=""
-            android:layout_column="4" />
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"/>
 
-    </TableRow>
-
-    <TableRow android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        <TextView
+            style="@style/display_layout_label"
+            android:id="@+id/tv_bill_label"
+            android:layout_above="@id/mid"
+            android:textColor="@color/bill_pad"
+            android:text="@string/bill"/>
 
         <com.example.rzhu.sepratebill.AtmTextView
             android:id="@+id/tv_bill_result"
             style="@style/display_layout_number"
-            android:textColor="@color/bill_pad"
-            android:layout_column="0" />
+            android:layout_below="@id/mid"
+            android:textColor="@color/bill_pad"/>
+
+        <TextView
+            android:id="@+id/tv_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_bill_result"
+            android:layout_toRightOf="@id/tv_bill_result"
+            android:textColor="@color/tip_pad"
+            android:text="@string/plus"
+            android:textSize="@dimen/result_label_font_size"
+            android:fontFamily="sans-serif-light"/>
+
+        <TextView
+            style="@style/display_layout_label"
+            android:id="@+id/tv_tip_label"
+            android:textColor="@color/tip_pad"
+            android:layout_toRightOf="@id/tv_plus"
+            android:text="@string/tip"
+            android:layout_above="@id/mid"/>
 
         <com.example.rzhu.sepratebill.AtmTextView
             android:id="@+id/tv_tip_result"
             style="@style/display_layout_number"
             android:textColor="@color/tip_pad"
-            android:layout_column="1" />
+            android:layout_below="@id/mid"
+            android:layout_toRightOf="@id/tv_plus"/>
+
+        <TextView
+            android:id="@+id/tv_equals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_bill_result"
+            android:layout_toRightOf="@id/tv_tip_result"
+            android:textColor="@color/white_smoke"
+            android:text="@string/equals"
+            android:textSize="@dimen/result_label_font_size"
+            android:fontFamily="sans-serif-light"/>
+
+
+
+        <TextView
+            style="@style/display_layout_label"
+            android:textColor="@color/white_smoke"
+            android:text="@string/total"
+            android:layout_above="@id/mid"
+            android:layout_toRightOf="@id/tv_equals"
+            android:id="@+id/tv_total_label"/>
 
         <TextView
             android:id="@+id/tv_total_result"
             style="@style/display_layout_number"
             android:textColor="@color/white_smoke"
             android:text="@string/zero_value"
-            android:layout_column="2" />
+            android:layout_below="@id/mid"
+            android:layout_toRightOf="@id/tv_equals" />
+
+        <TextView
+            android:id="@+id/tv_divide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_bill_result"
+            android:layout_toRightOf="@id/tv_total_result"
+            android:textColor="@color/share_pad"
+            android:text="@string/division"
+            android:textSize="@dimen/result_label_font_size"
+            android:fontFamily="sans-serif-light"/>
+
+
+        <TextView
+            style="@style/display_layout_label"
+            android:textColor="@color/share_pad"
+            android:text="@string/split"
+            android:layout_above="@id/mid"
+            android:layout_toRightOf="@id/tv_total_label"
+            android:id="@+id/tv_split_label" />
 
         <TextView
             android:id="@+id/tv_share_result"
             style="@style/display_layout_number"
             android:textColor="@color/share_pad"
-            android:layout_weight="0.6"
             android:text="@string/num_one"
-            android:layout_column="3" />
+            android:layout_toRightOf="@id/tv_total_result"
+            android:layout_below="@id/mid"/>
+
+
+        </RelativeLayout>
+
+
+
 
         <TextView
             android:id="@+id/tv_split_amount"
             android:layout_height="match_parent"
             android:layout_width="0dp"
-            android:layout_weight="1.5"
-            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
             android:textSize="@dimen/final_amount_font_size"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/split_amount_result"
-            android:layout_column="4" />
-    </TableRow>
+            android:fontFamily="sans-serif-thin"
+            android:textColor="@color/split_amount_result" />
 
-</TableLayout>
+
+</LinearLayout>

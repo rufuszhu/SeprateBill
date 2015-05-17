@@ -40,6 +40,7 @@
     <dimen name="share_title_font_size_land">18sp</dimen>
     <dimen name="share_btn_height_land">30dp</dimen>
     <dimen name="share_btn_width_land">60dp</dimen>
-
+    <dimen name="landscape_display_result_layout_width">440dp</dimen>
+    <dimen name="landscape_display_result_item_width">110dp</dimen>
 
 </resources>
