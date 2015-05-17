@@ -101,7 +101,7 @@
                 android:layout_alignParentEnd="true"
                 android:text="@string/num_one"
                 android:textSize="@dimen/result_label_font_size"
-                android:fontFamily="sans-serif-thin"/>
+                android:fontFamily="sans-serif-light"/>
 
         </RelativeLayout>
 

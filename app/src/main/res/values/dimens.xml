@@ -35,7 +35,7 @@
 
 
     <!-- ======================Landscape=========================== -->
-    <dimen name="display_layout_height_land">120dp</dimen>
+    <dimen name="display_layout_height_land">100dp</dimen>
     <dimen name="number_font_size_land">22sp</dimen>
     <dimen name="share_title_font_size_land">18sp</dimen>
     <dimen name="share_btn_height_land">30dp</dimen>
