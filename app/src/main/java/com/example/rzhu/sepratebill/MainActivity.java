@@ -16,6 +16,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -44,7 +45,7 @@ public class MainActivity extends Activity {
     private float tipAmount = 0f;
     private float totalAmount = 0f;
     private float tipPercent;
-    private int numOfShare = 1;
+    private int numOfShare;
     private float splitAmount = 0f;
 
     private RelativeLayout displayLayout;
@@ -112,6 +113,8 @@ public class MainActivity extends Activity {
                             tip10.performClick();
                         } else if (tipPercent == 0f) {
                             tip0.performClick();
+                        }else{
+                            clearTipSelectState();
                         }
                     }
                 });
@@ -140,9 +143,15 @@ public class MainActivity extends Activity {
         if(billAmount!=0f) tvBill.setText(precision.format(billAmount));
         if(tipAmount!=0f) tvTip.setText(precision.format(tipAmount));
         if(totalAmount!=0f) tvTotal.setText(precision.format(totalAmount));
-        tvShare.setText(numOfShare+"");
+        if (numOfShare!=0){
+            tvShare.setText(numOfShare+"");
+            tvSharePadNum.setText(numOfShare+"");
+        }else{
+            tvShare.setText("1");
+        }
+
         if(splitAmount!=0) tvSplit.setText(precision.format(splitAmount));
-        tvSharePadNum.setText(numOfShare+"");
+
 
         if(resultRevealed){
             cover.setVisibility(View.GONE);
@@ -190,7 +199,7 @@ public class MainActivity extends Activity {
                 break;
             case STATE_TIP:
                 if (!resultRevealed){
-                    return;
+                    revealAnimation();
                 }
                 if (tipAmount<999.99) {
                     if(!customTip){
@@ -283,12 +292,14 @@ public class MainActivity extends Activity {
 
         prefs.edit().putFloat(DEFAULT_TIP, tipPercent).apply();
         updateTip();
-        textUpdateAnimation(tvTip);
+        if(billAmount!=0){
+            textUpdateAnimation(tvTip);
+        }
     }
 
     public void shareBtnClicked(View v) {
         if (!resultRevealed){
-            return;
+            revealAnimation();
         }
 
         switch (v.getId()){
@@ -301,34 +312,39 @@ public class MainActivity extends Activity {
                 break;
             case R.id.tv_share_plus:
                 if (numOfShare<99) {
+                    if (numOfShare==0){
+                        numOfShare++;
+                    }
                     numOfShare++;
                 }else {
                     return;
                 }
                 break;
             case R.id.tv_share_back:
-                numOfShare = 1;
+                numOfShare = 0;
                 break;
         }
+        if (numOfShare!=0){
+            tvSharePadNum.setText(numOfShare+"");
+            startFlyShareNumberAnimation();
+        }else{
+            tvSharePadNum.setText(" ");
+            tvShare.setText("1");
+        }
 
-        tvSharePadNum.setText(numOfShare+"");
-        startFlyShareNumberAnimation();
         updateTotal();
     }
 
     public void setNumOfShare(View v) {
         if (!resultRevealed){
-            return;
+            revealAnimation();
         }
 
         int n = Integer.parseInt((String)v.getTag());
-        if (numOfShare==1){
-            numOfShare = n;
-        }else if(numOfShare<10){
-            numOfShare = numOfShare*10+n;
-        }else{
-            return;
-        }
+
+        numOfShare -= Math.ceil(numOfShare / 10)*10;
+        numOfShare = numOfShare*10+n;
+
         tvSharePadNum.setText(numOfShare+"");
         startFlyShareNumberAnimation();
         updateTotal();
@@ -353,7 +369,11 @@ public class MainActivity extends Activity {
     }
 
     private void updateSplit() {
-        splitAmount = totalAmount/numOfShare;
+        if (numOfShare!=-0) {
+            splitAmount = totalAmount / numOfShare;
+        }else{
+            splitAmount = totalAmount;
+        }
         splitAmount = Math.round(splitAmount *= 100f);
         splitAmount /= 100f;
         if (splitAmount!=0) {
@@ -381,6 +401,16 @@ public class MainActivity extends Activity {
                 .setInterpolator(new OvershootInterpolator())
                 .start();
     }
+
+    private void startSplitAmountAnimation(){
+        tvSplit.setScaleX(0);
+        tvSplit.setScaleY(0);
+        tvSplit.setAlpha(0);
+        tvSplit.animate().scaleX(1).scaleY(1).alpha(1).setDuration(1000)
+                .setInterpolator(new BounceInterpolator())
+                .start();
+    }
+
 
     private void toggleBillTip() {
         Log.i(TAG, "flipping "+currentState);
@@ -534,17 +564,6 @@ public class MainActivity extends Activity {
                     tvShare.setVisibility(View.VISIBLE);
                 }
             });
-
-//            ObjectAnimator colorAnimation = ObjectAnimator.ofInt(tvHoverNumOfShare, "textColor",
-//                    getResources().getColor(R.color.share_text_color), getResources().getColor(R.color.share_pad));
-//            colorAnimation.setAutoCancel(true);
-//            colorAnimation.addListener(new AnimatorListenerAdapter() {
-//                @Override
-//                public void onAnimationEnd(Animator animation) {
-//                    super.onAnimationEnd(animation);
-//                    tvHoverNumOfShare.setTextColor(getResources().getColor(R.color.share_text_color));
-//                }
-//            });
 
             AnimatorSet set = new AnimatorSet();
             //set.playTogether(moveAnimation, colorAnimation);
