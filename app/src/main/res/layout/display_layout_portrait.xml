@@ -96,7 +96,7 @@
                 android:id="@+id/tv_share_result"
                 android:layout_width="@dimen/share_number_textView_width"
                 android:layout_height="wrap_content"
-                android:gravity="right|center_vertical"
+                android:gravity="end|center_vertical"
                 android:textColor="@color/share_pad"
                 android:layout_alignParentEnd="true"
                 android:text="@string/num_one"
@@ -115,6 +115,7 @@
         android:gravity="center"
         android:textSize="@dimen/final_amount_font_size"
         android:fontFamily="sans-serif-thin"
-        android:textColor="@color/split_amount_result"/>
+        android:textColor="@color/split_amount_result"
+        android:visibility="invisible"/>
 
 </LinearLayout>

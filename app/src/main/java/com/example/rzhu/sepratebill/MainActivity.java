@@ -6,16 +6,20 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.animation.AnticipateInterpolator;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
@@ -31,11 +35,17 @@ public class MainActivity extends Activity {
     private final static String TAG = "MainActivity";
     private static final DecimalFormat precision = new DecimalFormat("00.00");
 
+    private static final int RESULT_TEXT_DELAY = 1000;
+    private static final int VIBRATION_LENGTH = 100;
     private static final String DEFAULT_TIP = "SP_DEFAULT_TIP";
     private final int STATE_TIP = 1;
     private final int STATE_BILL = 2;
 
     private SharedPreferences prefs;
+    private Handler mHandler;
+    private Vibrator mVibrator;
+    private boolean hasVibrator;
+
     private int statusBarHeight;
     private int currentState;
     private boolean resultRevealed = false;
@@ -60,6 +70,7 @@ public class MainActivity extends Activity {
     private Button tip20, tip15, tip10, tip0, toggleBtn;
 
     private TextView tvHoverNumOfShare;
+    private TypefaceTextView tvShareNumClear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +82,10 @@ public class MainActivity extends Activity {
             setContentView(R.layout.activity_main_landscape);
         }
 
+        mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        hasVibrator = mVibrator.hasVibrator();
+
+        mHandler = new Handler();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         currentState = STATE_BILL;
         tipPercent = prefs.getFloat(DEFAULT_TIP, 0.15f);
@@ -101,6 +116,7 @@ public class MainActivity extends Activity {
         statusBarHeight = getStatusBarHeight();
         if (currentState == STATE_BILL) {
             if (!customTip) {
+                hasVibrator = false;
                 tipPercent = prefs.getFloat(DEFAULT_TIP, 0.15f);
                 tipCol.post(new Runnable() {
                     @Override
@@ -116,6 +132,8 @@ public class MainActivity extends Activity {
                         }else{
                             clearTipSelectState();
                         }
+
+                        hasVibrator = mVibrator.hasVibrator();
                     }
                 });
             }
@@ -146,12 +164,20 @@ public class MainActivity extends Activity {
         if (numOfShare!=0){
             tvShare.setText(numOfShare+"");
             tvSharePadNum.setText(numOfShare+"");
+            tvShareNumClear.setVisibility(View.VISIBLE);
         }else{
             tvShare.setText("1");
+            tvShareNumClear.setVisibility(View.INVISIBLE);
         }
 
-        if(splitAmount!=0) tvSplit.setText(precision.format(splitAmount));
+        if(splitAmount!=0) {
+            tvSplit.setVisibility(View.VISIBLE);
+            tvSplit.setText(precision.format(splitAmount));
+        }else{
+            tvSplit.setVisibility(View.INVISIBLE);
+        }
 
+        mHandler.removeCallbacks(showTextDelayTask);
 
         if(resultRevealed){
             cover.setVisibility(View.GONE);
@@ -180,9 +206,11 @@ public class MainActivity extends Activity {
         toggleBtn = (Button) tipCol.findViewById(R.id.tip_btn);
 
         tvHoverNumOfShare = (TextView) findViewById(R.id.tv_share_holder);
+        tvShareNumClear =(TypefaceTextView) findViewById(R.id.tv_share_clear);
     }
 
     public void numPadClicked(View v) {
+        activateVibrator();
         int n = Integer.parseInt((String) v.getTag());
         switch (currentState){
             case STATE_BILL:
@@ -217,11 +245,9 @@ public class MainActivity extends Activity {
     }
 
     public void numPadClearClicked(View v) {
+        activateVibrator();
         switch (currentState){
             case STATE_BILL:
-//                billAmount = 0f;
-//                tvBill.setText("00.00");
-//                updateTip();
                 clearWaveAnimation();
                 break;
             case STATE_TIP:
@@ -237,6 +263,7 @@ public class MainActivity extends Activity {
     }
 
     public void numPadBackClicked(View v) {
+        activateVibrator();
         switch (currentState){
             case STATE_BILL:
                 if (billAmount>=0.01) {
@@ -264,6 +291,7 @@ public class MainActivity extends Activity {
     }
 
     public void setTipPercent(View v) {
+        activateVibrator();
         int viewId = v.getId();
         switch(viewId) {
             case R.id.tip_20:
@@ -301,7 +329,7 @@ public class MainActivity extends Activity {
         if (!resultRevealed){
             revealAnimation();
         }
-
+        activateVibrator();
         switch (v.getId()){
             case R.id.tv_share_minus:
                 if (numOfShare>1) {
@@ -314,13 +342,15 @@ public class MainActivity extends Activity {
                 if (numOfShare<99) {
                     if (numOfShare==0){
                         numOfShare++;
+                        showTextAnimation(tvShareNumClear);
                     }
                     numOfShare++;
                 }else {
                     return;
                 }
                 break;
-            case R.id.tv_share_back:
+            case R.id.tv_share_clear:
+                hideTextAnimation((TextView) v);
                 numOfShare = 0;
                 break;
         }
@@ -339,13 +369,14 @@ public class MainActivity extends Activity {
         if (!resultRevealed){
             revealAnimation();
         }
-
+        activateVibrator();
         int n = Integer.parseInt((String)v.getTag());
 
         numOfShare -= Math.ceil(numOfShare / 10)*10;
         numOfShare = numOfShare*10+n;
 
         tvSharePadNum.setText(numOfShare+"");
+        showTextAnimation(tvShareNumClear);
         startFlyShareNumberAnimation();
         updateTotal();
     }
@@ -377,11 +408,13 @@ public class MainActivity extends Activity {
         splitAmount = Math.round(splitAmount *= 100f);
         splitAmount /= 100f;
         if (splitAmount!=0) {
-            tvSplit.setText(precision.format(splitAmount));
-            tvSplit.setScaleX(0);
-            tvSplit.setScaleY(0);
-            tvSplit.setAlpha(0);
-            tvSplit.animate().scaleX(1).scaleY(1).setInterpolator(new OvershootInterpolator()).alpha(1).setDuration(1000).start();
+            if (tvSplit.getVisibility()!=View.VISIBLE) {
+                tvSplit.setText(precision.format(splitAmount));
+                showTextAnimation(tvSplit);
+            }else{
+                mHandler.removeCallbacks(showTextDelayTask);
+                mHandler.postDelayed(showTextDelayTask, RESULT_TEXT_DELAY);
+            }
         }else{
             tvSplit.setText("");
         }
@@ -402,13 +435,60 @@ public class MainActivity extends Activity {
                 .start();
     }
 
-    private void startSplitAmountAnimation(){
-        tvSplit.setScaleX(0);
-        tvSplit.setScaleY(0);
-        tvSplit.setAlpha(0);
-        tvSplit.animate().scaleX(1).scaleY(1).alpha(1).setDuration(1000)
-                .setInterpolator(new BounceInterpolator())
-                .start();
+    private void showTextAnimation(final TextView tv) {
+        if (tv.getVisibility()!=View.VISIBLE) {
+            Log.d(TAG, "show text");
+            tv.setVisibility(View.VISIBLE);
+            tv.setScaleX(0);
+            tv.setScaleY(0);
+            tv.setAlpha(0);
+            tv.animate().scaleX(1).scaleY(1).alpha(1).setDuration(800)
+                    .setInterpolator(new BounceInterpolator())
+                    .setListener(new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            tv.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+                        }
+                    }).start();
+        }
+    }
+
+    private void hideTextAnimation(final TextView tv) {
+        if (tv.getVisibility()==View.VISIBLE) {
+            Log.d(TAG, "hide text");
+            tv.animate().scaleX(0).scaleY(0).alpha(0).setDuration(600)
+                    .setInterpolator(new AnticipateInterpolator())
+                    .setListener(new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {}
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            tv.setVisibility(View.INVISIBLE);
+                            tv.setScaleX(1);
+                            tv.setScaleY(1);
+                            tv.setAlpha(1);
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {}
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {}
+                    }).start();
+        }
     }
 
 
@@ -565,10 +645,6 @@ public class MainActivity extends Activity {
                 }
             });
 
-            AnimatorSet set = new AnimatorSet();
-            //set.playTogether(moveAnimation, colorAnimation);
-
-            //set.start();
             moveAnimation.start();
         }
     }
@@ -586,4 +662,24 @@ public class MainActivity extends Activity {
         float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
         return px / scaledDensity;
     }
+
+    private void activateVibrator() {
+        if(hasVibrator)
+            mVibrator.vibrate(VIBRATION_LENGTH);
+    }
+
+    private Runnable showTextDelayTask = new Runnable() {
+        @Override
+        public void run() {
+            if (tvSplit!=null) {
+                String oldStr = (String) tvSplit.getText();
+                String newStr = precision.format(splitAmount);
+                if (!oldStr.equals(newStr)){
+                    tvSplit.setVisibility(View.INVISIBLE);
+                    tvSplit.setText(newStr);
+                    showTextAnimation(tvSplit);
+                }
+            }
+        }
+    };
 }

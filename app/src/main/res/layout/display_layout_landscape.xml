@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/tv_bill_result"
-            android:layout_toRightOf="@id/tv_bill_result"
+            android:layout_toEndOf="@id/tv_bill_result"
             android:textColor="@color/tip_pad"
             android:text="@string/plus"
             android:textSize="@dimen/result_label_font_size"
@@ -45,7 +45,7 @@
             style="@style/display_layout_label"
             android:id="@+id/tv_tip_label"
             android:textColor="@color/tip_pad"
-            android:layout_toRightOf="@id/tv_plus"
+            android:layout_toEndOf="@id/tv_plus"
             android:text="@string/tip"
             android:layout_above="@id/mid"/>
 
@@ -54,14 +54,14 @@
             style="@style/display_layout_number"
             android:textColor="@color/tip_pad"
             android:layout_below="@id/mid"
-            android:layout_toRightOf="@id/tv_plus"/>
+            android:layout_toEndOf="@id/tv_plus"/>
 
         <TextView
             android:id="@+id/tv_equals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/tv_bill_result"
-            android:layout_toRightOf="@id/tv_tip_result"
+            android:layout_toEndOf="@id/tv_tip_result"
             android:textColor="@color/white_smoke"
             android:text="@string/equals"
             android:textSize="@dimen/result_label_font_size"
@@ -74,7 +74,7 @@
             android:textColor="@color/white_smoke"
             android:text="@string/total"
             android:layout_above="@id/mid"
-            android:layout_toRightOf="@id/tv_equals"
+            android:layout_toEndOf="@id/tv_equals"
             android:id="@+id/tv_total_label"/>
 
         <TextView
@@ -83,14 +83,14 @@
             android:textColor="@color/white_smoke"
             android:text="@string/zero_value"
             android:layout_below="@id/mid"
-            android:layout_toRightOf="@id/tv_equals" />
+            android:layout_toEndOf="@id/tv_equals" />
 
         <TextView
             android:id="@+id/tv_divide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/tv_bill_result"
-            android:layout_toRightOf="@id/tv_total_result"
+            android:layout_toEndOf="@id/tv_total_result"
             android:textColor="@color/share_pad"
             android:text="@string/division"
             android:textSize="@dimen/result_label_font_size"
@@ -102,7 +102,7 @@
             android:textColor="@color/share_pad"
             android:text="@string/split"
             android:layout_above="@id/mid"
-            android:layout_toRightOf="@id/tv_total_label"
+            android:layout_toEndOf="@id/tv_total_label"
             android:id="@+id/tv_split_label" />
 
         <TextView
@@ -110,14 +110,10 @@
             style="@style/display_layout_number"
             android:textColor="@color/share_pad"
             android:text="@string/num_one"
-            android:layout_toRightOf="@id/tv_total_result"
+            android:layout_toEndOf="@id/tv_total_result"
             android:layout_below="@id/mid"/>
 
-
         </RelativeLayout>
-
-
-
 
         <TextView
             android:id="@+id/tv_split_amount"
@@ -127,7 +123,7 @@
             android:gravity="center"
             android:textSize="@dimen/final_amount_font_size"
             android:fontFamily="sans-serif-thin"
-            android:textColor="@color/split_amount_result" />
-
+            android:textColor="@color/split_amount_result"
+            android:visibility="invisible"/>
 
 </LinearLayout>

@@ -15,6 +15,7 @@
     <string name="num_nine">9</string>
     <string name="num_clear">CLR</string>
     <string name="icon_back_space">\uf3bf</string>
+    <string name="icon_cancel">\uf36e </string>
 
     <string name="tip_op1">10%</string>
     <string name="tip_op2">15%</string>
